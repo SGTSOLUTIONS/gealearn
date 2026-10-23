@@ -2,37 +2,26 @@
 {{-- CONTENT ONLY. Wrap code samples in @verbatim if they contain {{ }} --}}
 
 <p>
-    Geographic Information Systems (GIS) help us capture, store, manage and
-    analyse spatial data. This lesson introduces the fundamentals and why
-    location matters.
+    <strong>Spatial data</strong> is one of the most important ideas in GIS.
+    It tells us <em>where</em> things are on the earth — like roads, rivers,
+    buildings, forests, and city boundaries. It also tells us the shape and
+    size of these things, and how they relate to each other.
+</p>
+
+<p>
+    In this tutorial, you will learn what spatial data is, what makes it
+    special, the main types of spatial data, the common file formats, and
+    how it is used in real GIS projects.
 </p>
 
 <h2>Learning goals</h2>
 <ul>
-    <li>Understand what GIS is and what it can do</li>
-    <li>Recognise real-world applications of GIS</li>
-    <li>Learn the difference between vector and raster data</li>
+    <li>Understand what spatial data is in simple terms</li>
+    <li>Learn the main types of spatial data</li>
+    <li>See the common formats used to store spatial data</li>
+    <li>Know how spatial data is used in GIS projects</li>
 </ul>
 
 <div class="note">
-    <p style="margin:0"><strong>Note:</strong> Every GIS map is built from layers of data.</p>
-</div>
-
-<h2>GIS Example</h2>
-<p>A simple HTML page showing a heading and a paragraph:</p>
-
-<div class="example">
-    <h2>Example</h2>
-    <div class="code">
-        <script type="text/plain">
-<h1>My First GIS Page</h1>
-<p>GIS stands for Geographic Information System.</p>
-<p class="info">Location matters!</p>
-        </script>
-    </div>
-    <a class="tryit" href="#">Try it Yourself &raquo;</a>
-</div>
-
-<div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Replace this text with your own lesson content.</p>
+    <p style="margin:0"><strong>Note:</strong> Spatial data always answers one key question — <em>where is it?</em></p>
 </div>
