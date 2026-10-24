@@ -9,7 +9,7 @@
     --w3-muted: #5f6368;
 }
 
-.w3 { font-family: Verdana, "Segoe UI", sans-serif; color: var(--w3-text); background: #fff; }
+.w3 { font-family: Verdana, "Segoe UI", sans-serif; color: var(--w3-text); background: #fff; }  ----
 .w3 * { box-sizing: border-box; }
 
 /* ---------- TOP TAB BAR ---------- */
