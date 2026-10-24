@@ -73,7 +73,7 @@
 
 /* Info boxes */
 .w3-article .note { background: #ddffdd; border-left: 6px solid var(--w3-green); padding: 14px 18px; margin: 0 0 18px; }
-.w3-article .tip  { background: #e7e8ec; border-left: 6px solid #4a4d57; padding: 14px 18px; margin: 0 0 18px; }
+.w3-article .tip  { background: #e7ece7; border-left: 6px solid #4a4d57; padding: 14px 18px; margin: 0 0 18px; }
 .w3-article .warn { background: #ffffcc; border-left: 6px solid #ffeb3b; padding: 14px 18px; margin: 0 0 18px; }
 
 /* Example box (grey + white code + green left border) */
@@ -111,3 +111,38 @@
 .w3-course .go { align-self: flex-start; background: var(--w3-green); color: #fff; text-decoration: none; padding: 9px 18px; font-size: 16px; border-radius: 5px; }
 .w3-course .go:hover { background: var(--w3-dark); color: #fff; }
 .w3-course .count { font-size: 13px; color: var(--w3-muted); margin-bottom: 14px; }
+/* Look for this section in your w3learn.css */
+
+/* Example box (grey + white code + green left border) */
+.w3-article .example { 
+    background: var(--w3-gray); /* <-- CHANGE THIS COLOR TO WHATEVER YOU WANT */
+    padding: 14px 20px 20px; 
+    margin: 24px 0; 
+    border-radius: 3px; 
+}
+
+.w3-article .example > h2 { 
+    font-size: 19px; 
+    font-weight: 600; 
+    margin: 10px 0 14px; 
+}
+
+.w3-article .example .code { 
+    background: #fff; 
+    border-left: 6px solid var(--w3-green); 
+    padding: 14px 16px; 
+    margin-bottom: 16px; 
+    overflow-x: auto; 
+}
+
+.w3-article .example .code pre { 
+    margin: 0; 
+    font-family: Consolas, "Courier New", monospace; 
+    font-size: 15px; 
+    line-height: 1.5; 
+    color: #000; 
+    white-space: pre; 
+    background: transparent; 
+    padding: 0; 
+    border: 0; 
+}
