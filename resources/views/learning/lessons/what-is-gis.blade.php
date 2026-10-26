@@ -7,7 +7,7 @@
     In simple words, GIS connects <strong>locations, maps, and information</strong> to help us understand places and make better decisions.
 </p>
 
-<p>
+<p class=example>
     For example, a GIS map can show the location of a building along with its address, owner's name, building type, and property tax details.
 </p>
 

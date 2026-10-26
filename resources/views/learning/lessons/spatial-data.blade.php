@@ -1,65 +1,74 @@
-{{-- resources/views/learning/lessons/spatial-data-intro.blade.php --}}
-{{-- CONTENT ONLY --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Data - GIS Lesson</title>
+    
+</head>
+<body>
 
-<p>
-    Spatial data represents the geographic location, shape, size, and relationships of real-world features such as roads, rivers, buildings, forests, and administrative boundaries.
-    It is the foundation of every GIS map and spatial analysis.
-</p>
+    
 
-<h2>Learning goals</h2>
-<ul>
-    <li>Understand what spatial data is</li>
-    <li>Learn the key characteristics of spatial data</li>
-    <li>Recognise the two main spatial data models: vector and raster</li>
-</ul>
+    <!-- Main Content -->
+    <div class="content-container">
+        
+        <p>
+            Vector data is a type of geographic data used in Geographic Information Systems (GIS) to represent real-world features using coordinates and geometric shapes. It helps identify the exact locations, shapes, lengths, and boundaries of geographic features on a map.
+        </p>
 
-<div class="note">
-    <p style="margin:0"><strong>Note:</strong> Spatial data tells us <strong>where</strong> something is and what its geographic shape or extent looks like.</p>
-</div>
+        <h2>Learning goals</h2>
+        <ul>
+            <li>Understand the three basic geometry types: Point, Line, and Polygon</li>
+            <li>Identify real-world examples and practical applications for each type</li>
+            <li>Recognise the overall importance of vector data in GIS</li>
+        </ul>
 
-<h2>Key Characteristics of Spatial Data</h2>
-<ul>
-    <li><strong>Location:</strong> Where a feature exists (e.g., school coordinates).</li>
-    <li><strong>Geometry:</strong> The shape of a feature (point, line, or polygon).</li>
-    <li><strong>Coordinate system:</strong> How locations are referenced (geographic or projected CRS).</li>
-    <li><strong>Spatial relationships:</strong> How features relate geographically (e.g., a school located near a road).</li>
-    <li><strong>Extent:</strong> The geographic area covered (e.g., a district boundary).</li>
-    <li><strong>Scale and resolution:</strong> The level of geographic detail represented.</li>
-</ul>
+        <div class="note">
+            <p style="margin:0"><strong>Note:</strong> Vector data represents geographic features using three basic geometry types: points for locations, lines for paths, and polygons for areas.</p>
+        </div>
 
-<h2>Two Main Data Models</h2>
-<ul>
-    <li><strong>Vector Data:</strong> Represents features using points, lines, and polygons. Best for discrete features with defined boundaries.</li>
-    <li><strong>Raster Data:</strong> Represents geographic information as a grid of cells or pixels. Best for continuous surfaces and imagery.</li>
-</ul>
+        <h2>1. Point</h2>
+        <p>A point represents a specific location on the Earth's surface. It is defined by coordinates, such as latitude and longitude, and is used to show features that can be represented by a single location on a map.</p>
+        
+        <ul>
+            <li><strong>Examples:</strong> Wells, Trees, Bus stops, Hospitals, Schools, GPS survey locations, Weather stations.</li>
+            <li><strong>Practical application:</strong> Points can be used to map the locations of hospitals in a city, identify water wells in a village, or mark GPS survey locations during fieldwork.</li>
+        </ul>
 
-<h2>Spatial vs. Attribute Data</h2>
-<ul>
-    <li><strong>Spatial data</strong> tells you where a feature is (geometry, coordinates).</li>
-    <li><strong>Attribute data</strong> tells you what a feature is like (name, population, type).</li>
-</ul>
+        <h2>2. Line</h2>
+        <p>A line represents a linear geographic feature that has length. It is formed by connecting two or more coordinate points and is used to represent features that follow a path or extend from one location to another.</p>
+        
+        <ul>
+            <li><strong>Examples:</strong> Roads and highways, Rivers and streams, Railway tracks, Water pipelines, Electric transmission lines, Footpaths and trails, Drainage networks.</li>
+            <li><strong>Practical application:</strong> Lines can be used to map road networks, trace the flow of rivers, plan transportation routes, and identify the paths of pipelines or electricity transmission lines.</li>
+        </ul>
 
-<h2>Common Sources of Spatial Data</h2>
-<ul>
-    <li>Field surveys (GNSS/GPS receivers)</li>
-    <li>Remote sensing (satellites, aircraft)</li>
-    <li>Existing maps (digitized or georeferenced)</li>
-    <li>Government datasets</li>
-    <li>GPS-enabled devices</li>
-    <li>Drones</li>
-    <li>Open geospatial data</li>
-</ul>
+        <h2>3. Polygon</h2>
+        <p>A polygon represents a geographic area enclosed by a boundary. It is formed by connecting coordinate points to create a closed shape. Polygons are used to represent features that cover a specific area on the Earth's surface.</p>
+        
+        <ul>
+            <li><strong>Examples:</strong> Lakes and ponds, Forest areas, Land parcels, District and state boundaries, Agricultural fields, Buildings and property boundaries, Protected wildlife areas.</li>
+            <li><strong>Practical application:</strong> Polygons can be used to calculate the area of agricultural fields, map forest coverage, identify land ownership boundaries, and determine the areas covered by lakes or administrative districts.</li>
+        </ul>
 
-<h2>Why Spatial Data Matters</h2>
-<ul>
-    <li><strong>Mapping:</strong> Display geographic features and patterns.</li>
-    <li><strong>Measurement:</strong> Calculate distances, lengths, and areas.</li>
-    <li><strong>Spatial analysis:</strong> Identify proximity, overlap, connectivity, and distribution.</li>
-    <li><strong>Planning:</strong> Support land use, transport, and infrastructure decisions.</li>
-    <li><strong>Monitoring:</strong> Track environmental and urban changes.</li>
-    <li><strong>Communication:</strong> Present geographic information visually.</li>
-</ul>
+        <h2>Importance of Vector Data</h2>
+        <p>Vector data is widely used in GIS because it represents geographic features with clearly defined locations, paths, and boundaries. It supports several important applications, including:</p>
+        
+        <ul>
+            <li><strong>Urban planning:</strong> Mapping roads, buildings, and property boundaries.</li>
+            <li><strong>Transportation:</strong> Analyzing road networks and planning routes.</li>
+            <li><strong>Agriculture:</strong> Mapping farmland and calculating field areas.</li>
+            <li><strong>Environmental management:</strong> Mapping forests, rivers, lakes, and protected areas.</li>
+            <li><strong>Land management:</strong> Identifying land parcels and administrative boundaries.</li>
+            <li><strong>Utility management:</strong> Mapping water pipelines, drainage systems, and electricity networks.</li>
+        </ul>
 
-<div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Understanding spatial data is the foundation for learning how GIS stores, displays, and analyzes geographic information.</p>
-</div>
+        <div class="tip">
+            <p style="margin:0"><strong>Tip:</strong> Vector data represents geographic features using three basic geometry types: points for locations, lines for paths, and polygons for areas. These types help GIS users map, measure, analyze, and manage real-world geographic features accurately.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
