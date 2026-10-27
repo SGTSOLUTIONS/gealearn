@@ -19,51 +19,31 @@
 
 <h2>Visualizing Resolution</h2>
 
-<!-- Exact Replica of the provided image -->
+<!-- Improved Replica of the provided image -->
 <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 40px 30px; margin-bottom: 24px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
     
-    <div style="display: flex; align-items: flex-end; gap: 30px; margin-bottom: 20px;">
+    <div style="display: flex; align-items: flex-end; gap: 30px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;">
         
         <!-- LEFT SIDE: High Resolution (8x8 Grid) -->
         <div style="text-align: center;">
             <div style="font-size: 16px; font-weight: 700; color: #2e7d32; margin-bottom: 15px;">High resolution (1 m pixels)</div>
             
-            <!-- Grid Container -->
-            <div style="display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr); gap: 1px; background: #94a3b8; border: 1px solid #94a3b8; width: 250px; height: 250px; position: relative;">
+            <div style="position: relative; width: 250px; height: 250px; border: 1.5px solid #94a3b8; background-color: #f0f4e8; background-image: linear-gradient(#7f9db9 1px, transparent 1px), linear-gradient(90deg, #7f9db9 1px, transparent 1px); background-size: 31.25px 31.25px; background-position: -1px -1px;">
                 
-                <!-- Background (Light Green/Beige) -->
-                <div style="grid-column: 1 / -1; grid-row: 1 / -1; background: #f0f4e8; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
-                
-                <!-- The dashed red line -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom right, transparent calc(50% - 1px), #e53935 calc(50% - 1px), #e53935 calc(50% + 1px), transparent calc(50% + 1px)); z-index: 2; pointer-events: none;"></div>
+                <!-- The Real Feature (Red Dashed Line) via SVG -->
+                <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0; z-index: 2;">
+                    <line x1="0" y1="250" x2="250" y2="0" stroke="#e53935" stroke-width="3" stroke-dasharray="6,4" />
+                </svg>
 
-                <!-- The Blue Cells (Matching exact positions) -->
-                <!-- Row 5 (from top) -->
-                <div style="background: #30689c; z-index: 1; grid-column: 2; grid-row: 5;"></div>
-                <!-- Row 4 -->
-                <div style="background: #30689c; z-index: 1; grid-column: 3; grid-row: 4;"></div>
-                <!-- Row 3 -->
-                <div style="background: #30689c; z-index: 1; grid-column: 4; grid-row: 3;"></div>
-                <!-- Row 2 -->
-                <div style="background: #30689c; z-index: 1; grid-column: 5; grid-row: 2;"></div>
-                <!-- Row 1 -->
-                <div style="background: #30689c; z-index: 1; grid-column: 6; grid-row: 1;"></div>
-                <!-- Row 1 (Edge) -->
-                <div style="background: #30689c; z-index: 1; grid-column: 7; grid-row: 1;"></div>
-                <div style="background: #30689c; z-index: 1; grid-column: 8; grid-row: 1;"></div>
-
-                <!-- Grid Lines overlay to make cells visible -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr); gap: 1px; background: transparent; z-index: 3; pointer-events: none;">
-                    <!-- Generate 64 empty divs with borders -->
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                </div>
+                <!-- Blue Pixels (Representing the raster cells intersecting the line) -->
+                <!-- Using absolute positioning to align with the 31.25px grid cells -->
+                <div style="position: absolute; width: 31.25px; height: 31.25px; background: #30689c; left: 31.25px; top: 125px; z-index: 1;"></div>
+                <div style="position: absolute; width: 31.25px; height: 31.25px; background: #30689c; left: 62.5px; top: 93.75px; z-index: 1;"></div>
+                <div style="position: absolute; width: 31.25px; height: 31.25px; background: #30689c; left: 93.75px; top: 62.5px; z-index: 1;"></div>
+                <div style="position: absolute; width: 31.25px; height: 31.25px; background: #30689c; left: 125px; top: 31.25px; z-index: 1;"></div>
+                <div style="position: absolute; width: 31.25px; height: 31.25px; background: #30689c; left: 156.25px; top: 0px; z-index: 1;"></div>
+                <div style="position: absolute; width: 31.25px; height: 31.25px; background: #30689c; left: 187.5px; top: 0px; z-index: 1;"></div>
+                <div style="position: absolute; width: 31.25px; height: 31.25px; background: #30689c; left: 218.75px; top: 0px; z-index: 1;"></div>
             </div>
             
             <div style="font-size: 14px; color: #64748b; margin-top: 15px;">small cells = fine detail</div>
@@ -82,34 +62,21 @@
         <div style="text-align: center;">
             <div style="font-size: 16px; font-weight: 700; color: #d97706; margin-bottom: 15px;">Low resolution (30 m pixels)</div>
             
-            <!-- Grid Container -->
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 1px; background: #94a3b8; border: 1px solid #94a3b8; width: 250px; height: 250px; position: relative;">
+            <div style="position: relative; width: 250px; height: 250px; border: 1.5px solid #94a3b8; background-color: #f0f4e8; background-image: linear-gradient(#7f9db9 1px, transparent 1px), linear-gradient(90deg, #7f9db9 1px, transparent 1px); background-size: 62.5px 62.5px; background-position: -1px -1px;">
                 
-                <!-- Background (Light Green/Beige) -->
-                <div style="grid-column: 1 / -1; grid-row: 1 / -1; background: #f0f4e8; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
-                
-                <!-- The dashed red line -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom right, transparent calc(50% - 1px), #e53935 calc(50% - 1px), #e53935 calc(50% + 1px), transparent calc(50% + 1px)); z-index: 2; pointer-events: none;"></div>
+                <!-- The Real Feature (Red Dashed Line) via SVG -->
+                <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0; z-index: 2;">
+                    <line x1="0" y1="250" x2="250" y2="0" stroke="#e53935" stroke-width="3" stroke-dasharray="6,4" />
+                </svg>
 
-                <!-- The Blue Cells (Matching exact positions) -->
-                <!-- Row 1 -->
-                <div style="background: #30689c; z-index: 1; grid-column: 4; grid-row: 1;"></div>
-                <!-- Row 2 -->
-                <div style="background: #30689c; z-index: 1; grid-column: 2; grid-row: 2;"></div>
-                <div style="background: #30689c; z-index: 1; grid-column: 3; grid-row: 2;"></div>
-                <!-- Row 3 -->
-                <div style="background: #30689c; z-index: 1; grid-column: 1; grid-row: 3;"></div>
-                <div style="background: #30689c; z-index: 1; grid-column: 2; grid-row: 3;"></div>
-                <div style="background: #30689c; z-index: 1; grid-column: 3; grid-row: 3;"></div>
-
-                <!-- Grid Lines overlay to make cells visible -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 1px; background: transparent; z-index: 3; pointer-events: none;">
-                    <!-- Generate 16 empty divs with borders -->
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                    <div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div><div style="border: 0.5px solid #7f9db9;"></div>
-                </div>
+                <!-- Blue Pixels (Representing the raster cells intersecting the line) -->
+                <!-- Using absolute positioning to align with the 62.5px grid cells -->
+                <div style="position: absolute; width: 62.5px; height: 62.5px; background: #30689c; left: 187.5px; top: 0px; z-index: 1;"></div>
+                <div style="position: absolute; width: 62.5px; height: 62.5px; background: #30689c; left: 62.5px; top: 62.5px; z-index: 1;"></div>
+                <div style="position: absolute; width: 62.5px; height: 62.5px; background: #30689c; left: 125px; top: 62.5px; z-index: 1;"></div>
+                <div style="position: absolute; width: 62.5px; height: 62.5px; background: #30689c; left: 0px; top: 125px; z-index: 1;"></div>
+                <div style="position: absolute; width: 62.5px; height: 62.5px; background: #30689c; left: 62.5px; top: 125px; z-index: 1;"></div>
+                <div style="position: absolute; width: 62.5px; height: 62.5px; background: #30689c; left: 125px; top: 125px; z-index: 1;"></div>
             </div>
             
             <div style="font-size: 14px; color: #64748b; margin-top: 15px;">large cells = coarse detail</div>
@@ -118,7 +85,7 @@
 
     <!-- Legend -->
     <div style="width: 100%; display: flex; justify-content: flex-end; align-items: center; gap: 8px; font-size: 12px; color: #64748b; padding-right: 20px;">
-        <div style="width: 30px; border-top: 2px dashed #e53935;"></div>
+        <div style="width: 30px; border-top: 3px dashed #e53935;"></div>
         <span>real feature</span>
     </div>
 </div>
