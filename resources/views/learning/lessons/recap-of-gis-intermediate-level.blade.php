@@ -5,7 +5,7 @@
     The 25 topics move from asking questions of vector data, through measuring and raster work, to placing data accurately on the Earth.
 </p>
 
-<h2>Learning goals</h2>
+<h2>Learning goals GGGGGF</h2>
 <ul>
     <li>Review the complete intermediate workflow</li>
     <li>Check your understanding with the practice checklist</li>
