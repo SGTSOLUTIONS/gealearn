@@ -58,6 +58,11 @@ class CourseModuleController extends Controller
                 'string',
                 'max:255',
             ],
+            'level' => [
+                'required',
+                'string',
+                'in:Beginner,Intermediate,Advanced',
+            ],
             'description' => [
                 'nullable',
                 'string',
@@ -73,6 +78,7 @@ class CourseModuleController extends Controller
 
         $course->modules()->create([
             'title' => $data['title'],
+            'level' => $data['level'],
             'description' => $data['description'] ?? null,
             'sort_order' => $data['sort_order'],
         ]);
@@ -91,6 +97,11 @@ class CourseModuleController extends Controller
                 'required',
                 'string',
                 'max:255',
+            ],
+            'level' => [
+                'required',
+                'string',
+                'in:Beginner,Intermediate,Advanced',
             ],
             'description' => [
                 'nullable',

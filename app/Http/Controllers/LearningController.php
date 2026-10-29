@@ -42,6 +42,19 @@ class LearningController extends Controller
         return $this->renderCoursePage($courseModel, $lessonModel);
     }
 
+private function allowedLevels(): array
+{
+    if (!auth()->check()) {
+        return ['Beginner'];
+    }
+
+    if (auth()->user()->is_subscribed) {
+        return ['Beginner', 'Intermediate', 'Advanced'];
+    }
+
+    return ['Beginner', 'Intermediate'];
+}
+
     /**
      * Load course with modules + lessons, each sorted properly.
      * (sort_order is unique per module, so we must NOT sort the flattened list.)
@@ -50,8 +63,8 @@ class LearningController extends Controller
     {
         return Course::where('slug', $slug)
             ->with([
-                'modules'         => fn ($q) => $q->orderBy('sort_order'),
-                'modules.lessons' => fn ($q) => $q->orderBy('sort_order'),
+'modules'         => fn ($q) => $q->whereIn('level', $this->allowedLevels())->orderBy('sort_order'),
+'modules.lessons' => fn ($q) => $q->orderBy('sort_order'),
             ])
             ->firstOrFail();
     }
