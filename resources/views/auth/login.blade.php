@@ -1,267 +1,120 @@
-
 @extends('layouts.auth')
 
 @section('content')
-
-<main class="gis-login-page">
-
-    <!-- LEFT SIDE: DESKTOP ONLY -->
-    <section class="gis-hero">
-
-        <a href="/" class="gis-brand">
-            <span class="gis-brand-icon">
-                <i class="bi bi-globe-americas"></i>
-            </span>
-
-            <span class="gis-brand-content">
-                <span class="gis-brand-name">
-                    GeoLearn <span>GIS</span>
-                </span>
-                <small>Learn · Explore · Analyse · Create</small>
-            </span>
-        </a>
-
-        <div class="gis-hero-content">
-
-            <span class="gis-eyebrow">
-                <i class="bi bi-globe2"></i>
-                GEOSPATIAL LEARNING PLATFORM
-            </span>
-
-            <h1 class="gis-hero-title">
-                Explore the World<br>
-                with <span>GIS Learning</span>
-            </h1>
-
-            <p class="gis-hero-description">
-                Interactive courses, real-world datasets and powerful
-                analysis tools for learners of all levels.
-            </p>
-
-            <div class="gis-features">
-
-                <div class="gis-feature">
-                    <div class="gis-feature-icon">
-                        <i class="bi bi-mortarboard"></i>
-                    </div>
-                    <h3>Learn</h3>
-                    <p>GIS Concepts</p>
+<div class="container-fluid p-0">
+    <div class="row g-0 min-vh-100">
+        <div class="col-lg-6 d-none d-lg-flex flex-column auth-hero p-5 text-white">
+            <a href="/" class="text-white text-decoration-none d-flex align-items-center gap-2 mb-5">
+                <span class="fs-2 auth-accent"><i class="bi bi-globe-americas"></i></span>
+                <div>
+                    <div class="fw-bold fs-5 auth-brand-name">GeoLearn <span class="auth-accent">GIS</span></div>
+                    <small>Learn · Explore · Analyse · Create</small>
                 </div>
-
-                <div class="gis-feature">
-                    <div class="gis-feature-icon">
-                        <i class="bi bi-map"></i>
-                    </div>
-                    <h3>Explore</h3>
-                    <p>Real-world Maps</p>
+            </a>
+            <div class="my-auto">
+                <span class="badge mb-3" style="background: rgba(255,255,255,.15); color:#fff;"><i class="bi bi-globe2 auth-accent"></i> GEOSPATIAL LEARNING PLATFORM</span>
+                <h1 class="display-5 fw-bold mb-3">Explore the World<br>with <span class="auth-accent">GIS Learning</span></h1>
+                <p class="lead mb-4">Interactive courses, real-world datasets and powerful analysis tools for learners of all levels.</p>
+                <div class="row g-3">
+                    <div class="col-6"><div class="rounded p-3" style="background: rgba(255,255,255,.12);"><i class="bi bi-mortarboard fs-4 auth-accent"></i><div class="fw-semibold mt-2">Learn</div><small>GIS Concepts</small></div></div>
+                    <div class="col-6"><div class="rounded p-3" style="background: rgba(255,255,255,.12);"><i class="bi bi-map fs-4 auth-accent"></i><div class="fw-semibold mt-2">Explore</div><small>Real-world Maps</small></div></div>
+                    <div class="col-6"><div class="rounded p-3" style="background: rgba(255,255,255,.12);"><i class="bi bi-bar-chart-line fs-4 auth-accent"></i><div class="fw-semibold mt-2">Analyse</div><small>Spatial Data</small></div></div>
+                    <div class="col-6"><div class="rounded p-3" style="background: rgba(255,255,255,.12);"><i class="bi bi-people fs-4 auth-accent"></i><div class="fw-semibold mt-2">Grow</div><small>School to Professional</small></div></div>
                 </div>
-
-                <div class="gis-feature">
-                    <div class="gis-feature-icon">
-                        <i class="bi bi-bar-chart-line"></i>
-                    </div>
-                    <h3>Analyse</h3>
-                    <p>Spatial Data</p>
-                </div>
-
-                <div class="gis-feature">
-                    <div class="gis-feature-icon">
-                        <i class="bi bi-people"></i>
-                    </div>
-                    <h3>Grow</h3>
-                    <p>School to Professional</p>
-                </div>
-
+            </div>
+            <div class="mt-auto d-flex gap-3 small">
+                <span><i class="bi bi-globe auth-accent"></i> Learn the planet.</span>
+                <span><i class="bi bi-geo-alt auth-accent"></i> Understand the data.</span>
             </div>
         </div>
 
-        <div class="gis-hero-footer">
-            <span><i class="bi bi-globe"></i> Learn the planet.</span>
-            <span><i class="bi bi-geo-alt"></i> Understand the data.</span>
-        </div>
-
-    </section>
-
-
-    <!-- RIGHT SIDE: LOGIN -->
-    <section class="gis-auth-section">
-
-        <div class="gis-auth-wrapper">
-
-            <!-- BRAND -->
-            <div class="gis-auth-brand">
-                <div class="gis-auth-logo">
-                    <i class="bi bi-globe-americas"></i>
+        <div class="col-lg-6 d-flex align-items-center justify-content-center p-4" style="background-color: var(--cream);">
+            <div class="w-100" style="max-width: 420px;">
+                <div class="text-center mb-4 d-lg-none">
+                    <span class="fs-1" style="color: var(--forest);"><i class="bi bi-globe-americas"></i></span>
+                    <h2 class="h4 fw-bold mb-0 auth-heading">GeoLearn <span style="color: var(--forest);">GIS</span></h2>
+                    <small class="auth-muted">Learn · Explore · Analyse · Create</small>
                 </div>
 
-                <h2>GeoLearn <span>GIS</span></h2>
-                <p>Learn · Explore · Analyse · Create</p>
-            </div>
+                <div class="auth-card p-4 p-md-5">
+                    <h1 class="h5 fw-bold mb-1 auth-heading">Welcome Back!</h1>
+                    <p class="auth-muted small mb-4">Login to continue your GIS learning journey</p>
 
-            <!-- LOGIN CARD -->
-            <div class="gis-login-card">
+                    <form id="loginForm">
+                        @csrf
 
-                <div class="gis-welcome">
-                    <h1>Welcome Back!</h1>
-                    <p>Login to continue your GIS learning journey</p>
-                </div>
-
-                <form id="loginForm">
-                    @csrf
-
-                    <!-- EMAIL -->
-                    <div class="gis-form-group">
-                        <label for="email" class="gis-label">
-                            Email address
-                        </label>
-
-                        <div class="gis-input-wrap">
-                            <i class="bi bi-envelope gis-input-icon"></i>
-
-                            <input
-                                type="email"
-                                name="email"
-                                id="email"
-                                class="form-control gis-input"
-                                placeholder="Enter your email"
-                                autocomplete="username"
-                                required
-                            >
+                        <div class="mb-3">
+                            <label for="email" class="form-label auth-heading">Email address</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope" style="color: var(--forest);"></i></span>
+                                <input type="email" name="email" id="email" class="form-control auth-input" placeholder="Enter your email" autocomplete="username" required>
+                            </div>
+                            <small class="text-danger" id="emailError"></small>
                         </div>
 
-                        <small class="gis-error" id="emailError"></small>
-                    </div>
-
-                    <!-- PASSWORD -->
-                    <div class="gis-form-group">
-                        <label for="password" class="gis-label">
-                            Password
-                        </label>
-
-                        <div class="gis-input-wrap">
-                            <i class="bi bi-lock gis-input-icon"></i>
-
-                            <input
-                                type="password"
-                                name="password"
-                                id="password"
-                                class="form-control gis-input gis-password-input"
-                                placeholder="Enter your password"
-                                autocomplete="current-password"
-                                required
-                            >
-
-                            <button
-                                type="button"
-                                class="gis-password-toggle"
-                                id="togglePassword"
-                                aria-label="Show password"
-                                aria-pressed="false"
-                            >
-                                <i class="bi bi-eye"></i>
-                            </button>
+                        <div class="mb-3">
+                            <label for="password" class="form-label auth-heading">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock" style="color: var(--forest);"></i></span>
+                                <input type="password" name="password" id="password" class="form-control auth-input" placeholder="Enter your password" autocomplete="current-password" required>
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword" aria-label="Show password" aria-pressed="false">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <small class="text-danger" id="passwordError"></small>
                         </div>
 
-                        <small class="gis-error" id="passwordError"></small>
-                    </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" value="1" id="remember">
+                                <label class="form-check-label auth-muted" for="remember">Remember me</label>
+                            </div>
+                            <a href="#" class="small text-decoration-none auth-link" id="forgotPasswordLink">Forgot password?</a>
+                        </div>
 
-                    <!-- REMEMBER AND FORGOT -->
-                    <div class="gis-form-options">
-                        <label class="gis-remember">
-                            <input type="checkbox" name="remember" value="1">
-                            <span>Remember me</span>
-                        </label>
+                        <div id="loginError" class="alert alert-danger py-2 d-none" role="alert" aria-live="polite"></div>
 
-                        <a href="#" class="gis-link"
-                           id="forgotPasswordLink">
-                            Forgot password?
-                        </a>
-                    </div>
+                        <button type="submit" id="loginButton" class="btn auth-btn w-100">
+                            <span class="button-text">Login</span>
+                            <i class="bi bi-arrow-right ms-1"></i>
+                        </button>
 
-                    <div id="loginError"
-                         class="gis-general-error"
-                         role="alert"
-                         aria-live="polite"></div>
+                        <p class="text-center small mt-3 mb-0 auth-muted">
+                            Don't have an account?
+                            <a href="{{ route('register') }}" class="auth-link" id="signupLink">Sign up</a>
+                        </p>
 
-                    <!-- LOGIN BUTTON -->
-                    <button
-                        type="submit"
-                        id="loginButton"
-                        class="btn gis-login-button"
-                    >
-                        <span class="button-text">Login</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </button>
-
-                    <!-- DIVIDER -->
-                    <div class="gis-divider">
-                        <span>OR CONTINUE WITH</span>
-                    </div>
-
-                    {{-- <!-- SOCIAL BUTTONS -->
-                    <button type="button" class="btn gis-social-button">
-                        <i class="bi bi-google google-icon"></i>
-                        Continue with Google
-                    </button>
-
-                    <button type="button" class="btn gis-social-button">
-                        <i class="bi bi-microsoft microsoft-icon"></i>
-                        Continue with Microsoft
-                    </button> --}}
-
-                    <!-- REGISTER -->
-                    <p class="gis-signup">
-                        Don't have an account?
-                        <a href="{{ route('register')}}" id="signupLink">Sign up</a>
-                    </p>
-
-                </form>
-
-                <div class="gis-card-footer">
-                    <i class="bi bi-shield-check"></i>
-                    Learn securely. Explore confidently.
+                        <div class="text-center mt-3 small auth-muted">
+                            <i class="bi bi-shield-check" style="color: var(--forest);"></i> Learn securely. Explore confidently.
+                        </div>
+                    </form>
                 </div>
-
             </div>
         </div>
-
-    </section>
-
-</main>
-
+    </div>
+</div>
 @endsection
 
 @push('scripts')
 <script>
 $(function () {
-
-    // Show / hide password
     $('#togglePassword').on('click', function () {
         const password = $('#password');
         const icon = $(this).find('i');
-
         const show = password.attr('type') === 'password';
-
         password.attr('type', show ? 'text' : 'password');
-
         icon.toggleClass('bi-eye', !show);
         icon.toggleClass('bi-eye-slash', show);
-
-        $(this)
-            .attr('aria-pressed', show ? 'true' : 'false')
-            .attr('aria-label', show ? 'Hide password' : 'Show password');
+        $(this).attr('aria-pressed', show ? 'true' : 'false').attr('aria-label', show ? 'Hide password' : 'Show password');
     });
 
-    // AJAX login
     $('#loginForm').on('submit', function (e) {
         e.preventDefault();
-
-        $('.gis-error').text('');
-        $('.gis-input').removeClass('is-invalid');
-        $('#loginError').text('');
+        $('.text-danger').text('');
+        $('.form-control').removeClass('is-invalid');
+        $('#loginError').addClass('d-none').text('');
 
         const button = $('#loginButton');
-
         button.prop('disabled', true);
         button.find('.button-text').text('Signing in...');
 
@@ -269,57 +122,42 @@ $(function () {
             url: @json(route('login.submit')),
             type: 'POST',
             data: $(this).serialize(),
-
             headers: {
                 'Accept': 'application/json',
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-
             success: function (response) {
                 if (response.success && response.redirect) {
                     window.location.href = response.redirect;
                 } else {
-                    $('#loginError').text(
-                        'Unable to log in. Please try again.'
-                    );
+                    $('#loginError').removeClass('d-none').text('Unable to log in. Please try again.');
                 }
             },
-
             error: function (xhr) {
                 if (xhr.status === 422) {
                     const errors = xhr.responseJSON?.errors || {};
-
                     $.each(errors, function (field, messages) {
                         const input = $('#' + field);
                         const error = $('#' + field + 'Error');
-
                         if (error.length) {
                             error.text(messages[0]);
                             input.addClass('is-invalid');
                         } else {
-                            $('#loginError').text(messages[0]);
+                            $('#loginError').removeClass('d-none').text(messages[0]);
                         }
                     });
                 } else if (xhr.status === 419) {
-                    $('#loginError').text(
-                        'Session expired. Refresh and try again.'
-                    );
+                    $('#loginError').removeClass('d-none').text('Session expired. Refresh and try again.');
                 } else {
-                    $('#loginError').text(
-                        'Something went wrong. Please try again.'
-                    );
+                    $('#loginError').removeClass('d-none').text('Something went wrong. Please try again.');
                 }
             },
-
             complete: function () {
                 button.prop('disabled', false);
                 button.find('.button-text').text('Login');
             }
         });
     });
-
-
-
 });
 </script>
 @endpush
