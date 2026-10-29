@@ -612,8 +612,9 @@
                                                 class="btn btn-outline-primary action-btn editModuleBtn"
                                                 title="Edit module"
                                                 data-id="{{ $module->id }}"
-                                                data-title="{{ $module->title }}"
-                                                data-description="{{ $module->description }}"
+data-title="{{ $module->title }}"
+                                                 data-level="{{ $module->level }}"
+                                                 data-description="{{ $module->description }}"
                                                 data-order="{{ $module->sort_order }}">
 
                                             <i class="bi bi-pencil-square"></i>
@@ -766,6 +767,17 @@
                                required>
                     </div>
 
+<div class="mb-3">
+    <label for="moduleLevel" class="form-label">
+        Level <span class="text-danger">*</span>
+    </label>
+    <select class="form-select" name="level" id="moduleLevel" required>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+    </select>
+</div>
+
                     <div class="mb-3">
                         <label for="moduleDescription" class="form-label">
                             Module Description
@@ -830,8 +842,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const moduleForm = document.getElementById('moduleForm');
     const formMethod = document.getElementById('moduleFormMethod');
 
-    const titleInput = document.getElementById('moduleTitle');
-    const descriptionInput = document.getElementById('moduleDescription');
+const titleInput = document.getElementById('moduleTitle');
+const levelInput = document.getElementById('moduleLevel');
+const descriptionInput = document.getElementById('moduleDescription');
     const orderInput = document.getElementById('moduleOrder');
     const saveButton = document.getElementById('saveModuleBtn');
 
@@ -858,8 +871,9 @@ document.addEventListener('DOMContentLoaded', function () {
         moduleForm.action = storeUrl;
         formMethod.value = 'POST';
 
-        titleInput.value = '';
-        descriptionInput.value = '';
+titleInput.value = '';
+levelInput.value = 'Beginner';
+descriptionInput.value = '';
         orderInput.value = @json($modules->count() + 1);
 
         document.getElementById('moduleModalLabel').textContent =
@@ -901,8 +915,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             formMethod.value = 'PUT';
 
-            titleInput.value = this.dataset.title || '';
-            descriptionInput.value = this.dataset.description || '';
+titleInput.value = this.dataset.title || '';
+levelInput.value = this.dataset.level || 'Beginner';
+descriptionInput.value = this.dataset.description || '';
             orderInput.value = this.dataset.order || '1';
 
             document.getElementById('moduleModalLabel').textContent =
