@@ -33,4 +33,23 @@
     <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; background: #f9f9f9;">ESA WorldCover (10m)</div>
     <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; background: #f9f9f9;">Dynamic World</div>
     <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; background: #f9f9f9;">CORINE</div>
-    <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 4
+    <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; background: #f9f9f9;">NLCD</div>
+</div>
+
+<p>
+    The diagram shows the distinction between land cover and land use. Land cover is the physical material on the ground, while land use describes how people utilize that land. Ready-made datasets like ESA WorldCover and CORINE are useful for comparison, but creating your own map involves choosing a classification scheme, preprocessing imagery, collecting samples, classifying, and assessing accuracy.
+</p>
+
+<h2>Key Points (Q&A)</h2>
+<ul>
+    <li><strong>Land cover or land use?</strong> Land cover is what physically covers the ground (grass, trees). Land use is how people use it (park, farm).</li>
+    <li><strong>Which data are used?</strong> Multispectral imagery, ideally from several dates, plus indices and a DEM.</li>
+    <li><strong>Are ready-made maps available?</strong> Yes: ESA WorldCover (10 m), Dynamic World, CORINE, and NLCD are useful for comparison.</li>
+    <li><strong>What is a classification scheme?</strong> A fixed list of classes, such as Anderson levels, CORINE, or the ESA WorldCover legend.</li>
+    <li><strong>What are the steps?</strong> Choose a scheme, preprocess, collect samples, classify, assess accuracy, and make the map.</li>
+    <li><strong>How do I report results?</strong> A map with a legend, a table of area per class, and an accuracy statement.</li>
+</ul>
+
+<div class="tip">
+    <p style="margin:0"><strong>Tip:</strong> Use images from different seasons: crops and forests may look alike in one season but different in another.</p>
+</div>
