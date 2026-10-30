@@ -12,7 +12,7 @@
     <li>Complete the practice checklist to reinforce learning</li>
 </ul>
 
-<h2>Visual Guide: Module 13 Structure</h2>
+<h2>Visual Guide: GIS for Land and Property Management Workflow</h2>
 <div style="display: flex; justify-content: space-between; align-items: stretch; margin: 20px 0; font-size: 11px;">
     
     <!-- Box 1: Survey -->
