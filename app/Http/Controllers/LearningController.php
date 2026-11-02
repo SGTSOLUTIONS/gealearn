@@ -37,23 +37,27 @@ class LearningController extends Controller
         $lessonModel = $flat->firstWhere('slug', $lesson)
             ?? (ctype_digit($lesson) ? $flat->firstWhere('id', (int) $lesson) : null);
 
-        abort_if(!$lessonModel, 404);
+        abort_if(! $lessonModel, 404);
+
+        if (! auth()->check() && optional($lessonModel->module)->level !== 'Beginner' && auth()->user()?->role !== 'admin') {
+            return redirect()->guest(route('login'));
+        }
 
         return $this->renderCoursePage($courseModel, $lessonModel);
     }
 
-private function allowedLevels(): array
-{
-    if (!auth()->check()) {
-        return ['Beginner'];
-    }
+    private function allowedLevels(): array
+    {
+        if (! auth()->check()) {
+            return ['Beginner'];
+        }
 
-    if (auth()->user()->is_subscribed) {
-        return ['Beginner', 'Intermediate', 'Advanced'];
-    }
+        if (auth()->user()->is_subscribed) {
+            return ['Beginner', 'Intermediate', 'Advanced'];
+        }
 
-    return ['Beginner', 'Intermediate'];
-}
+        return ['Beginner', 'Intermediate'];
+    }
 
     /**
      * Load course with modules + lessons, each sorted properly.
@@ -63,8 +67,8 @@ private function allowedLevels(): array
     {
         return Course::where('slug', $slug)
             ->with([
-'modules'         => fn ($q) => $q->whereIn('level', $this->allowedLevels())->orderBy('sort_order'),
-'modules.lessons' => fn ($q) => $q->orderBy('sort_order'),
+                'modules' => fn ($q) => $q->orderBy('sort_order'),
+                'modules.lessons' => fn ($q) => $q->orderBy('sort_order'),
             ])
             ->firstOrFail();
     }
@@ -76,15 +80,15 @@ private function allowedLevels(): array
             ->values();
 
         $lessonIndex = 0;
-        $customView  = null;
+        $customView = null;
 
         if ($lesson) {
-            $found       = $flatLessons->search(fn ($l) => $l->id === $lesson->id);
+            $found = $flatLessons->search(fn ($l) => $l->id === $lesson->id);
             $lessonIndex = $found === false ? 0 : $found + 1;
 
             // Custom blade: resources/views/learning/lessons/{slug}.blade.php
             if ($lesson->slug && preg_match('/^[A-Za-z0-9_-]+$/', $lesson->slug)) {
-                $candidate = 'learning.lessons.' . $lesson->slug;
+                $candidate = 'learning.lessons.'.$lesson->slug;
                 if (view()->exists($candidate)) {
                     $customView = $candidate;
                 }
@@ -92,15 +96,16 @@ private function allowedLevels(): array
         }
 
         return view('learning.course', [
-            'course'       => $course,
-            'lesson'       => $lesson,
-            'flatLessons'  => $flatLessons,
-            'lessonIndex'  => $lessonIndex,
+            'course' => $course,
+            'lesson' => $lesson,
+            'flatLessons' => $flatLessons,
+            'lessonIndex' => $lessonIndex,
             'totalLessons' => $flatLessons->count(),
-            'customView'   => $customView,
-            'navCourses'   => Course::where('status', true)
+            'customView' => $customView,
+            'navCourses' => Course::where('status', true)
                 ->orderBy('title')
                 ->get(['id', 'title', 'slug']),
+            'allowedLevels' => $this->allowedLevels(),
         ]);
     }
 }

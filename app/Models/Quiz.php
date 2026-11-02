@@ -19,8 +19,27 @@ class Quiz extends Model
         'explanation',
     ];
 
+    protected $casts = [
+        'marks' => 'integer',
+    ];
+
     public function lesson(): BelongsTo
     {
         return $this->belongsTo(Lesson::class);
+    }
+
+    public function options(): array
+    {
+        return array_filter([
+            'A' => $this->option_a,
+            'B' => $this->option_b,
+            'C' => $this->option_c,
+            'D' => $this->option_d,
+        ], fn ($v) => $v !== null && $v !== '');
+    }
+
+    public function isCorrect(string $option): bool
+    {
+        return strtoupper($this->correct_option) === strtoupper($option);
     }
 }

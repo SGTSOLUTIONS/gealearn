@@ -39,10 +39,15 @@
                             href="{{ route('admin.modules') }}">
                             <i class="bi bi-layers-fill"></i> Modules
                         </a>
-                         <a class="nav-item {{ request()->routeIs('admin.lessons.*') ? 'active' : '' }}"
-           href="{{ route('admin.lessons.index') }}">
+<a class="nav-item {{ request()->routeIs('admin.lessons.*') ? 'active' : '' }}"
+            href="{{ route('admin.lessons.index') }}">
             <i class="bi bi-file-text-fill"></i>
             Lessons
+        </a>
+         <a class="nav-item {{ request()->routeIs('admin.quizzes.*') ? 'active' : '' }}"
+            href="{{ route('admin.quizzes.index') }}">
+            <i class="bi bi-question-circle-fill"></i>
+            Quizzes
         </a>
                     @endif
 

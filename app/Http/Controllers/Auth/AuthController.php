@@ -43,10 +43,16 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
+        $fallback = auth()->user()->role === 'admin'
+            ? route('dashboard')
+            : route('learning.index');
+
+        $redirect = redirect()->intended($fallback)->getTargetUrl();
+
         return response()->json([
             'success' => true,
             'message' => 'Registration successful!',
-            'redirect' => route('dashboard'),
+            'redirect' => $redirect,
         ], 201);
     }
 
@@ -69,10 +75,16 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
+        $fallback = auth()->user()->role === 'admin'
+            ? route('dashboard')
+            : route('learning.index');
+
+        $redirect = redirect()->intended($fallback)->getTargetUrl();
+
         return response()->json([
             'success' => true,
             'message' => 'Login successful!',
-            'redirect' => route('dashboard'),
+            'redirect' => $redirect,
         ]);
     }
 
