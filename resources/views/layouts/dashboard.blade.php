@@ -44,8 +44,8 @@
             <i class="bi bi-file-text-fill"></i>
             Lessons
         </a>
-         <a class="nav-item {{ request()->routeIs('admin.quizzes.*') ? 'active' : '' }}"
-            href="{{ route('admin.quizzes.index') }}">
+         <a class="nav-item {{ request()->routeIs('admin.quiz.*') ? 'active' : '' }}"
+            href="{{ route('admin.quiz.index') }}">
             <i class="bi bi-question-circle-fill"></i>
             Quizzes
         </a>
