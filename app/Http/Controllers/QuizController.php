@@ -115,7 +115,6 @@ class QuizController extends Controller
     }
 
     /* ─────────────────────── helpers ─────────────────────── */
-
     private function validateQuiz(Request $request, ?int $ignoreId = null): array
     {
         return $request->validate([

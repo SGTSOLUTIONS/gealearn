@@ -57,7 +57,7 @@ Route::prefix('admin')
         // Singular resource name → routes registered as admin.quiz.*
 
         Route::resource('quiz', QuizController::class)->names([
-            'index'   => 'quizzes.index',
+            'index'   => 'quiz.index',
             'create'  => 'quiz.create',
             'store'   => 'quiz.store',
             'show'    => 'quiz.show',
