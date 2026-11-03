@@ -4,15 +4,93 @@
 <!-- ================= TOPIC 18.1: GIS SYLLABUS ================= -->
 
 <p>
-    The syllabus organises the 20 modules of this guide into five stages, from foundations to practice and certification.
+    The syllabus organises the modules of this guide into five stages, from foundations to practice and certification.
 </p>
 
-<h2>Learning goals</h2>
+<h2>Learning goalssss</h2>
 <ul>
     <li>Understand the five stages of the course</li>
     <li>Know which modules belong to each stage</li>
     <li>Follow the order within a stage</li>
 </ul>
+
+<h2>Visual Guide: Module Structure</h2>
+<div style="display: flex; justify-content: space-between; align-items: stretch; margin: 20px 0; font-size: 11px; font-family: sans-serif;">
+    
+    <!-- Box 1: Plan -->
+    <div style="width: 18%; display: flex; flex-direction: column;">
+        <div style="background: #2c3e50; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">1 Plan</div>
+        <div style="border: 2px solid #2c3e50; border-top: none; padding: 10px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
+            <ul style="margin: 0; padding-left: 15px; list-style-type: disc;">
+                <li style="margin-bottom: 8px;">Syllabus</li>
+                <li>Study plan</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="display: flex; align-items: center; color: #f39c12; font-size: 18px; margin: 0 2px;">&rarr;</div>
+
+    <!-- Box 2: Levels -->
+    <div style="width: 18%; display: flex; flex-direction: column;">
+        <div style="background: #27ae60; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">2 Levels</div>
+        <div style="border: 2px solid #27ae60; border-top: none; padding: 10px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
+            <ul style="margin: 0; padding-left: 15px; list-style-type: disc;">
+                <li style="margin-bottom: 8px;">Beginner</li>
+                <li style="margin-bottom: 8px;">Intermediate</li>
+                <li>Advanced</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="display: flex; align-items: center; color: #f39c12; font-size: 18px; margin: 0 2px;">&rarr;</div>
+
+    <!-- Box 3: Specialise -->
+    <div style="width: 18%; display: flex; flex-direction: column;">
+        <div style="background: #2980b9; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">3 Specialise</div>
+        <div style="border: 2px solid #2980b9; border-top: none; padding: 10px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
+            <ul style="margin: 0; padding-left: 15px; list-style-type: disc;">
+                <li style="margin-bottom: 8px;">Programming</li>
+                <li style="margin-bottom: 8px;">Web GIS</li>
+                <li>3D GIS</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="display: flex; align-items: center; color: #f39c12; font-size: 18px; margin: 0 2px;">&rarr;</div>
+
+    <!-- Box 4: Prepare -->
+    <div style="width: 18%; display: flex; flex-direction: column;">
+        <div style="background: #8e44ad; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">4 Prepare</div>
+        <div style="border: 2px solid #8e44ad; border-top: none; padding: 10px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
+            <ul style="margin: 0; padding-left: 15px; list-style-type: disc;">
+                <li style="margin-bottom: 8px;">Tools installation</li>
+                <li>Portfolio</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="display: flex; align-items: center; color: #f39c12; font-size: 18px; margin: 0 2px;">&rarr;</div>
+
+    <!-- Box 5: Career -->
+    <div style="width: 18%; display: flex; flex-direction: column;">
+        <div style="background: #d35400; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">5 Career</div>
+        <div style="border: 2px solid #d35400; border-top: none; padding: 10px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
+            <ul style="margin: 0; padding-left: 15px; list-style-type: disc;">
+                <li style="margin-bottom: 8px;">Certification</li>
+                <li>Career preparation</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div style="text-align: center; font-size: 11px; color: #d9534f; margin-bottom: 20px;">
+    &larr; Plan &rarr; Learn by level &rarr; Specialise &rarr; Prepare &rarr; Start your career &rarr;
+</div>
+
+<p>
+    The diagram shows the structure of Module. The topics map your learning: where to start, how to progress, how to prepare tools and a portfolio, and how to move into a career. The practice checklist below helps reinforce learning.
+</p>
 
 <h2>Visual Guide: Five stages of the course</h2>
 <div style="display: flex; justify-content: center; align-items: center; margin: 20px 0;">
@@ -540,47 +618,32 @@
             <!-- 3D Isometric Blocks -->
             
             <!-- Block 1 (Dark Blue) -->
-            <!-- Top Face -->
             <polygon points="410,220 440,200 470,220 440,240" fill="#005a70" />
-            <!-- Left Face -->
             <polygon points="410,220 440,240 440,270 410,250" fill="#004a5a" />
-            <!-- Right Face -->
             <polygon points="440,240 470,220 470,250 440,270" fill="#003a4a" />
             <text x="440" y="235" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">1</text>
 
             <!-- Block 2 (Green) -->
-            <!-- Top Face -->
             <polygon points="450,200 480,180 510,200 480,220" fill="#2ecc71" />
-            <!-- Left Face -->
             <polygon points="450,200 480,220 480,260 450,240" fill="#27ae60" />
-            <!-- Right Face -->
             <polygon points="480,220 510,200 510,240 480,260" fill="#1e8449" />
             <text x="480" y="215" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">2</text>
 
             <!-- Block 3 (Light Blue) -->
-            <!-- Top Face -->
             <polygon points="490,180 520,160 550,180 520,200" fill="#2980b9" />
-            <!-- Left Face -->
             <polygon points="490,180 520,200 520,250 490,230" fill="#1f618d" />
-            <!-- Right Face -->
             <polygon points="520,200 550,180 550,230 520,250" fill="#154360" />
             <text x="520" y="195" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">3</text>
 
             <!-- Block 4 (Purple) -->
-            <!-- Top Face -->
             <polygon points="530,160 560,140 590,160 560,180" fill="#8e44ad" />
-            <!-- Left Face -->
             <polygon points="530,160 560,180 560,240 530,220" fill="#6c3483" />
-            <!-- Right Face -->
             <polygon points="560,180 590,160 590,220 560,240" fill="#512e5f" />
             <text x="560" y="175" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">4</text>
 
             <!-- Block 5 (Orange) -->
-            <!-- Top Face -->
             <polygon points="570,140 600,120 630,140 600,160" fill="#f07b24" />
-            <!-- Left Face -->
             <polygon points="570,140 600,160 600,250 570,230" fill="#d35400" />
-            <!-- Right Face -->
             <polygon points="600,160 630,140 630,230 600,250" fill="#a04000" />
             <text x="600" y="155" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">5</text>
 
@@ -944,74 +1007,6 @@
     <li>Connect planning, levels, specialisation, preparation and career</li>
     <li>Complete the practice checklist</li>
 </ul>
-
-<h2>Visual Guide: Module 18 Structure</h2>
-<div style="display: flex; justify-content: space-between; align-items: stretch; margin: 20px 0; font-size: 11px;">
-    
-    <!-- Box 1: Plan -->
-    <div style="width: 18%; display: flex; flex-direction: column;">
-        <div style="background: #2c3e50; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">1 Plan</div>
-        <div style="border: 2px solid #2c3e50; border-top: none; padding: 8px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
-            18.1 Syllabus<br><br>
-            18.2 Study plan
-        </div>
-    </div>
-
-    <div style="display: flex; align-items: center; color: #f39c12; font-size: 18px; margin: 0 5px;">&rarr;</div>
-
-    <!-- Box 2: Levels -->
-    <div style="width: 18%; display: flex; flex-direction: column;">
-        <div style="background: #27ae60; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">2 Levels</div>
-        <div style="border: 2px solid #27ae60; border-top: none; padding: 8px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
-            18.3 Beginner<br><br>
-            18.4 Intermediate<br><br>
-            18.5 Advanced
-        </div>
-    </div>
-
-    <div style="display: flex; align-items: center; color: #f39c12; font-size: 18px; margin: 0 5px;">&rarr;</div>
-
-    <!-- Box 3: Specialise -->
-    <div style="width: 18%; display: flex; flex-direction: column;">
-        <div style="background: #2980b9; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">3 Specialise</div>
-        <div style="border: 2px solid #2980b9; border-top: none; padding: 8px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
-            18.6 Programming<br><br>
-            18.7 Web GIS<br><br>
-            18.8 3D GIS
-        </div>
-    </div>
-
-    <div style="display: flex; align-items: center; color: #f39c12; font-size: 18px; margin: 0 5px;">&rarr;</div>
-
-    <!-- Box 4: Prepare -->
-    <div style="width: 18%; display: flex; flex-direction: column;">
-        <div style="background: #8e44ad; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">4 Prepare</div>
-        <div style="border: 2px solid #8e44ad; border-top: none; padding: 8px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
-            18.9 Tools installation<br><br>
-            18.10 Portfolio
-        </div>
-    </div>
-
-    <div style="display: flex; align-items: center; color: #f39c12; font-size: 18px; margin: 0 5px;">&rarr;</div>
-
-    <!-- Box 5: Career -->
-    <div style="width: 18%; display: flex; flex-direction: column;">
-        <div style="background: #d35400; color: white; padding: 6px; text-align: center; font-weight: bold; border-radius: 4px 4px 0 0;">5 Career</div>
-        <div style="border: 2px solid #d35400; border-top: none; padding: 8px; flex-grow: 1; background: #fff; border-radius: 0 0 4px 4px;">
-            18.11 Certification<br><br>
-            18.12 Career preparation
-        </div>
-    </div>
-
-</div>
-
-<div style="text-align: center; font-size: 11px; color: #d9534f; margin-bottom: 20px;">
-    &larr; Plan &rarr; Learn by level &rarr; Specialise &rarr; Prepare &rarr; Start your career &rarr;
-</div>
-
-<p>
-    The diagram shows the structure of Module 18. The topics map your learning: where to start, how to progress, how to prepare tools and a portfolio, and how to move into a career. The practice checklist below helps reinforce learning. Next up is Module 19 - GIS Glossary and Reference.
-</p>
 
 <h2>Practice checklist</h2>
 <ul>
