@@ -19,7 +19,9 @@
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
         rel="stylesheet"
-    >
+    ><script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+
 
     <!-- OpenLayers CSS (for GIS map pages) -->
     <link
