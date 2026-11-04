@@ -29,24 +29,27 @@ class LearningController extends Controller
         return $this->renderCoursePage($courseModel, $firstLesson);
     }
 
-    public function showLesson(string $course, string $lesson)
-    {
-        $courseModel = $this->loadCourse($course);
+   public function showLesson(string $course, string $lesson)
+{
+    $courseModel = $this->loadCourse($course);
 
-        $flat = $courseModel->modules->flatMap->lessons;
+    // Find lesson using ID only, within the selected course
+    $lessonModel = $courseModel->modules
+        ->flatMap->lessons
+        ->firstWhere('id', (int) $lesson);
 
-        // 1) slug match (inside this course only), 2) fallback to numeric id
-        $lessonModel = $flat->firstWhere('slug', $lesson)
-            ?? (ctype_digit($lesson) ? $flat->firstWhere('id', (int) $lesson) : null);
+    abort_if(! $lessonModel || ! ctype_digit($lesson), 404);
 
-        abort_if(! $lessonModel, 404);
-
-        if (! auth()->check() && optional($lessonModel->module)->level !== 'Beginner' && auth()->user()?->role !== 'admin') {
-            return redirect()->guest(route('login'));
-        }
-
-        return $this->renderCoursePage($courseModel, $lessonModel);
+    // Access control
+    if (
+        ! auth()->check()
+        && optional($lessonModel->module)->level !== 'Beginner'
+    ) {
+        return redirect()->guest(route('login'));
     }
+
+    return $this->renderCoursePage($courseModel, $lessonModel);
+}
 
     private function allowedLevels(): array
     {
