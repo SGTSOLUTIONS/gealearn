@@ -41,13 +41,17 @@ class LessonController extends Controller
 
         $lessons = $selectedModule
             ? Lesson::where('course_module_id', $selectedModule->id)
-                ->withCount('quizzes')
-                ->orderBy('sort_order')
-                ->get()
+            ->withCount('quizzes')
+            ->orderBy('sort_order')
+            ->get()
             : collect();
 
         return view('admin.lessons.index', compact(
-            'courses', 'selectedCourse', 'modules', 'selectedModule', 'lessons'
+            'courses',
+            'selectedCourse',
+            'modules',
+            'selectedModule',
+            'lessons'
         ));
     }
 
@@ -63,7 +67,7 @@ class LessonController extends Controller
             ? $data['slug']
             : $this->makeUniqueSlug($data['title'], (int) $data['course_module_id']);
 
-        $lesson = DB::transaction(fn () => Lesson::create($data));
+        $lesson = DB::transaction(fn() => Lesson::create($data));
 
         $lesson->loadCount('quizzes');
 
@@ -99,7 +103,7 @@ class LessonController extends Controller
             ? $data['slug']
             : $this->makeUniqueSlug($data['title'], (int) $data['course_module_id'], $lesson->id);
 
-        DB::transaction(fn () => $lesson->update($data));
+        DB::transaction(fn() => $lesson->update($data));
 
         $lesson->refresh()->loadCount('quizzes');
 
@@ -118,7 +122,7 @@ class LessonController extends Controller
     {
         $moduleId = $lesson->course_module_id;
 
-        DB::transaction(fn () => $lesson->delete());
+        DB::transaction(fn() => $lesson->delete());
 
         return response()->json([
             'success' => true,
@@ -138,20 +142,33 @@ class LessonController extends Controller
         return $request->validate([
             'course_module_id' => ['required', 'integer', 'exists:course_modules,id'],
             'title'            => ['required', 'string', 'max:255'],
-            'slug'             => [
+            'slug' => [
                 'nullable',
                 'string',
                 'max:255',
-                // letters, numbers, - and _ only (slug = blade file name)
                 'regex:/^[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*$/',
-                function ($attribute, $value, $fail) use ($courseId, $ignoreId) {
+                function ($attribute, $value, $fail) use ($moduleId, $courseId, $ignoreId) {
                     if (!$value || !$courseId) {
                         return;
                     }
 
+                    // Reserved slug: "quizz" is allowed once per module.
+                    if ($value === 'quizz') {
+                        $exists = Lesson::where('slug', $value)
+                            ->where('course_module_id', $moduleId)
+                            ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
+                            ->exists();
+
+                        if ($exists) {
+                            $fail('The "quizz" lesson already exists in this module.');
+                        }
+                        return;
+                    }
+
+                    // Normal slugs: unique across the whole course (URL is course-scoped).
                     $exists = Lesson::where('slug', $value)
-                        ->whereHas('module', fn ($q) => $q->where('course_id', $courseId))
-                        ->when($ignoreId, fn ($q) => $q->where('id', '!=', $ignoreId))
+                        ->whereHas('module', fn($q) => $q->where('course_id', $courseId))
+                        ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
                         ->exists();
 
                     if ($exists) {
@@ -161,7 +178,9 @@ class LessonController extends Controller
             ],
             'content'          => ['nullable', 'string'],
             'sort_order'       => [
-                'required', 'integer', 'min:1',
+                'required',
+                'integer',
+                'min:1',
                 Rule::unique('lessons', 'sort_order')
                     ->where('course_module_id', $moduleId)
                     ->ignore($ignoreId),
@@ -184,9 +203,9 @@ class LessonController extends Controller
 
         while (
             Lesson::where('slug', $slug)
-                ->whereHas('module', fn ($q) => $q->where('course_id', $courseId))
-                ->when($ignoreId, fn ($q) => $q->where('id', '!=', $ignoreId))
-                ->exists()
+            ->whereHas('module', fn($q) => $q->where('course_id', $courseId))
+            ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
+            ->exists()
         ) {
             $slug = $base . '-' . $i++;
         }
