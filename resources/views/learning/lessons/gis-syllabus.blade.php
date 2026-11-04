@@ -7,7 +7,7 @@
     The syllabus organises the modules of this guide into five stages, from foundations to practice and certification.
 </p>
 
-<h2>Learning goalssss</h2>
+<h2>Learning goals</h2>
 <ul>
     <li>Understand the five stages of the course</li>
     <li>Know which modules belong to each stage</li>
