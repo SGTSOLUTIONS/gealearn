@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseModule;
 use App\Models\Lesson;
+use Illuminate\Http\Request;
 
 class LearningController extends Controller
 {
@@ -98,6 +100,7 @@ class LearningController extends Controller
         return view('learning.course', [
             'course' => $course,
             'lesson' => $lesson,
+            'module_id' => $lesson->course_module_id,
             'flatLessons' => $flatLessons,
             'lessonIndex' => $lessonIndex,
             'totalLessons' => $flatLessons->count(),
@@ -107,5 +110,52 @@ class LearningController extends Controller
                 ->get(['id', 'title', 'slug']),
             'allowedLevels' => $this->allowedLevels(),
         ]);
+    }
+
+
+   public function quizz(Request $request)
+    {
+        $request->validate([
+            'module_id' => 'required|integer|exists:course_modules,id',
+        ]);
+
+        // Eager load module -> lessons -> quizzes
+        $module = CourseModule::with([
+            'lessons' => function ($q) {
+                $q->orderBy('sort_order');
+            },
+            'lessons.quizzes',
+        ])->findOrFail($request->module_id);
+
+        // Shape the response for the frontend
+        $payload = [
+            'module' => [
+                'id'    => $module->id,
+                'title' => $module->title,
+            ],
+            'lessons' => $module->lessons->map(function ($lesson) {
+                return [
+                    'id'         => $lesson->id,
+                    'title'      => $lesson->title,
+                    'slug'       => $lesson->slug,
+                    'snippet'    => $lesson->contentSnippet(120),
+                    'heading'    => $lesson->primaryHeading(),
+                    'blocks'     => $lesson->blockCount(),
+                    'quiz_count' => $lesson->quizzes->count(),
+                    'quizzes'    => $lesson->quizzes->map(function ($quiz) {
+                        return [
+                            'id'             => $quiz->id,
+                            'question'       => $quiz->question,
+                            'options'        => $quiz->options(),     // ['A'=>..., 'B'=>...]
+                            'correct_option' => $quiz->correct_option,
+                            'marks'          => $quiz->marks,
+                            'explanation'    => $quiz->explanation,
+                        ];
+                    })->values(),
+                ];
+            })->values(),
+        ];
+
+        return response()->json($payload);
     }
 }

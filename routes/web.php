@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/learning', [LearningController::class, 'index'])->name('learning.index');
 Route::get('/learning/{course}', [LearningController::class, 'showCourse'])->name('learning.course');
 Route::get('/learning/{course}/{lesson}', [LearningController::class, 'showLesson'])->name('learning.lesson');
+Route::post('/quizz', [LearningController::class, 'quizz']);
 
 Route::prefix('admin')
     ->name('admin.')
