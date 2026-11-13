@@ -14,11 +14,12 @@
 
 <h2>Visual Guide: Area, perimeter and units</h2>
 <div style="display: flex; justify-content: center; align-items: center; margin: 20px 0;">
-    <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; background: #eef4f0; padding: 15px; border-radius: 6px;">
-        <div style="font-weight: bold; color: #005a70; margin-bottom: 10px;">Area, perimeter and units</div>
+    <div style="width: 100%; max-width: 650px; display: flex; flex-direction: column; align-items: center; background: #eef4f0; padding: 20px 10px; border-radius: 6px; font-family: sans-serif;">
         
-        <svg viewBox="0 0 600 300" style="width: 100%;">
-            <!-- Polygon -->
+        <div style="font-weight: bold; color: #005a70; margin-bottom: 15px; font-size: 14px;">Area, perimeter and units</div>
+        
+        <svg viewBox="0 0 650 340" style="width: 100%;">
+            <!-- Main Polygon -->
             <polygon points="150,80 280,40 480,60 520,180 380,240 200,200" fill="#fdf0e0" stroke="#f07b24" stroke-width="3" />
             
             <!-- Vertices -->
@@ -33,17 +34,22 @@
             <text x="120" y="60" font-size="12" fill="#f07b24" font-style="italic">perimeter = outline</text>
             <text x="280" y="150" font-size="12" fill="#666" font-style="italic">area = inside</text>
             
+            <!-- Area Text -->
             <text x="280" y="180" font-size="20" fill="#005a70" font-weight="bold" text-anchor="middle">A = 450 m2</text>
             
-            <text x="520" y="130" font-size="12" fill="#f07b24" font-weight="bold">26.1 m</text>
-            <text x="300" y="260" font-size="12" fill="#f07b24" font-weight="bold">28.4 m</text>
+            <!-- Measurements -->
+            <text x="520" y="130" font-size="13" fill="#f07b24" font-weight="bold">26.1 m</text>
+            <text x="300" y="260" font-size="13" fill="#f07b24" font-weight="bold">28.4 m</text>
 
-            <!-- Unit Conversion Bar -->
-            <rect x="100" y="290" width="400" height="30" fill="#fff" stroke="#005a70" stroke-width="1" />
+            <!-- Unit Conversion Box -->
+            <rect x="100" y="290" width="450" height="30" fill="#fff" stroke="#005a70" stroke-width="1.5" rx="4" />
             <text x="200" y="310" font-size="12" fill="#005a70" font-weight="bold" text-anchor="middle">m2 / 10,000 = hectares</text>
-            <text x="400" y="310" font-size="12" fill="#005a70" font-weight="bold" text-anchor="middle">m2 / 4,046.86 = acres</text>
+            <text x="430" y="310" font-size="12" fill="#005a70" font-weight="bold" text-anchor="middle">m2 / 4,046.86 = acres</text>
+            
+            <!-- Bottom Text -->
+            <text x="325" y="335" font-size="12" fill="#d9534f" font-weight="bold" text-anchor="middle">state the unit on every report</text>
         </svg>
-        <div style="text-align: center; font-size: 11px; color: #d9534f; margin-top: 10px;">state the unit on every report</div>
+        
     </div>
 </div>
 
@@ -55,7 +61,7 @@
     </div>
     <div style="display: flex; margin-bottom: 12px; align-items: flex-start;">
         <div style="background: #f07b24; color: #fff; width: 22px; height: 22px; border-radius: 50%; text-align: center; line-height: 22px; font-weight: bold; margin-right: 10px; flex-shrink: 0;">2</div>
-        <div>Open the attribute table and click the <strong>Field Calculator</strong> (Ctrl+1).</div>
+        <div>Open the attribute table and click the <strong>Field Calculator</strong> (Ctrl+I).</div>
     </div>
     <div style="display: flex; margin-bottom: 12px; align-items: flex-start;">
         <div style="background: #f07b24; color: #fff; width: 22px; height: 22px; border-radius: 50%; text-align: center; line-height: 22px; font-weight: bold; margin-right: 10px; flex-shrink: 0;">3</div>
