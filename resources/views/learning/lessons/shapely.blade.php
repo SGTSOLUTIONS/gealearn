@@ -1,63 +1,235 @@
+```blade
 {{-- resources/views/learning/lessons/8-14-shapely.blade.php --}}
 {{-- CONTENT ONLY --}}
 
 <p>
-    Shapely creates and analyses individual geometries: points, lines and polygons.
-    It is the geometric engine behind GeoPandas.
+    Shapely is a Python library used to create, manipulate and analyse
+    geometric objects. It helps us work with spatial shapes such as points,
+    lines and polygons. It is commonly used with GeoPandas when performing
+    spatial analysis on geographic data.
 </p>
 
-<h2>Learning goals</h2>
-<ul>
-    <li>Create geometric objects</li>
-    <li>Perform geometric operations</li>
-    <li>Test spatial relationships</li>
-</ul>
-
-<h2>Visual Guide: Shapely Intersection</h2>
-<div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; font-size: 12px;">
-    <div style="width: 50%; border: 1px solid #ccc; border-radius: 6px; overflow: hidden; background: #282A35; color: #fff;">
-        <div style="padding: 6px 12px; background: #1e2b3c; font-size: 11px;">shapely.py</div>
-        <div style="padding: 15px; font-family: Consolas, monospace; font-size: 13px; text-align: left;">
-            from shapely.geometry import box<br>
-            a = box(0, 0, 4, 3)<br>
-            b = box(2, 1, 6, 5)<br>
-            c = a.intersection(b)<br>
-            print(c.area) &nbsp; # 4.0<br>
-            a.contains(b) &nbsp;&nbsp; # False
-        </div>
-    </div>
-    <div style="width: 45%; display: flex; justify-content: center; align-items: center;">
-        <div style="position: relative; width: 120px; height: 90px;">
-            <div style="position: absolute; top: 10px; left: 0; width: 80px; height: 60px; border: 2px solid #04AA6D; background: rgba(4,170,109,0.1);"></div>
-            <div style="position: absolute; top: 20px; left: 30px; width: 80px; height: 60px; border: 2px solid #FF9800; background: rgba(255,152,0,0.1);"></div>
-            <div style="position: absolute; top: 30px; left: 30px; width: 40px; height: 30px; background: rgba(33,150,243,0.3); border: 1px solid #2196F3;"></div>
-            <div style="position: absolute; top: 5px; left: 5px; font-size: 10px; color: #04AA6D; font-weight: bold;">a</div>
-            <div style="position: absolute; bottom: 5px; right: 5px; font-size: 10px; color: #FF9800; font-weight: bold;">b</div>
-            <div style="position: absolute; top: 35px; left: 45px; font-size: 10px; color: #2196F3; font-weight: bold;">c</div>
-        </div>
-    </div>
-</div>
-<div style="display: flex; justify-content: space-around; margin-bottom: 20px; font-size: 11px; text-align: center;">
-    <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; background: #f9f9f9;">buffer()</div>
-    <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; background: #f9f9f9;">union()</div>
-    <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; background: #f9f9f9;">difference()</div>
-    <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; background: #f9f9f9;">centroid()</div>
-</div>
+<h2>Understanding Geometries in Shapely</h2>
 
 <p>
-    The diagram shows two boxes intersecting, with the overlapping area highlighted in blue.
+    In spatial analysis, real-world objects can be represented using different
+    geometric shapes. For example, a city location can be represented as a
+    point, a road as a line and a park boundary as a polygon.
+    Shapely provides ready-made geometry classes to represent these objects.
 </p>
 
-<h2>Key Points (Q&A)</h2>
-<ul>
-    <li><strong>What is Shapely?</strong> A library to create and analyse geometries (Point, LineString, Polygon). No CRS, no attributes.</li>
-    <li><strong>How do I create a point?</strong> <code>Point(78.0, 20.5)</code>.</li>
-    <li><strong>Which operations are available?</strong> buffer, intersection, union, difference, centroid.</li>
-    <li><strong>Which relationship tests exist?</strong> contains, within, intersects, touches.</li>
-    <li><strong>How do I measure?</strong> .area, .length and .distance(other) in the units of the coordinates.</li>
-    <li><strong>Why use a projected CRS?</strong> Shapely works on a flat plane, so metres need projected coordinates.</li>
-</ul>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Geometry</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Point</td>
+                <td>Represents a single location.</td>
+                <td>ATM location</td>
+            </tr>
+            <tr>
+                <td>LineString</td>
+                <td>Represents a connected sequence of points.</td>
+                <td>Road or river</td>
+            </tr>
+            <tr>
+                <td>Polygon</td>
+                <td>Represents an enclosed area.</td>
+                <td>Park or building boundary</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Creating Geometric Objects</h2>
+
+<p>
+    Shapely provides geometry classes that allow us to create spatial objects
+    directly using coordinate values. These geometries form the foundation
+    for performing spatial operations.
+</p>
+
+<pre><code class="language-python">from shapely.geometry import Point, LineString, Polygon
+
+# Create a point
+location = Point(78.0, 20.5)
+
+# Create a line
+road = LineString([
+    (78.0, 20.5),
+    (78.5, 21.0),
+    (79.0, 21.5)
+])
+
+# Create a polygon
+park = Polygon([
+    (78.0, 20.0),
+    (79.0, 20.0),
+    (79.0, 21.0),
+    (78.0, 21.0)
+])
+
+print(location)
+print(road)
+print(park)</code></pre>
+
+<p>
+    Each object stores its geometric shape and coordinates. Once created,
+    these objects can be used for measurements, comparisons and spatial
+    operations.
+</p>
+
+<h2>Performing Geometric Operations</h2>
+
+<p>
+    One of the most useful features of Shapely is its ability to perform
+    operations between geometries. These operations help identify overlapping
+    regions, combine shapes and calculate areas.
+</p>
+
+<pre><code class="language-python">from shapely.geometry import box
+
+# Create two rectangular geometries
+a = box(0, 0, 4, 3)
+b = box(2, 1, 6, 5)
+
+# Find their overlapping region
+overlap = a.intersection(b)
+
+# Combine both geometries
+combined = a.union(b)
+
+# Find the part of A outside B
+remaining = a.difference(b)
+
+print("Intersection area:", overlap.area)
+print("Combined area:", combined.area)
+print("Remaining area:", remaining.area)</code></pre>
+
+<p>
+    The intersection identifies the shared region between two shapes.
+    Union combines their areas, while difference returns the portion of
+    the first geometry that does not overlap the second.
+</p>
+
+<h2>Measuring Geometries</h2>
+
+<p>
+    Shapely also provides measurement properties and methods. These are
+    useful when calculating the size of an area, the length of a route
+    or the distance between two locations.
+</p>
+
+<pre><code class="language-python">from shapely.geometry import Point, Polygon
+
+# Create two locations
+p1 = Point(0, 0)
+p2 = Point(3, 4)
+
+# Calculate distance
+print("Distance:", p1.distance(p2))
+
+# Create a rectangular area
+area = Polygon([
+    (0, 0),
+    (5, 0),
+    (5, 4),
+    (0, 4)
+])
+
+print("Area:", area.area)
+print("Boundary length:", area.length)
+print("Centre:", area.centroid)</code></pre>
+
+<p>
+    The distance between the two points is 5 coordinate units.
+    The polygon has an area of 20 square coordinate units and a boundary
+    length of 18 coordinate units.
+</p>
+
+<h2>Checking Spatial Relationships</h2>
+
+<p>
+    Sometimes we need to determine how two geometries are related rather
+    than calculate their measurements. Shapely provides relationship
+    methods that return True or False depending on the spatial condition.
+</p>
+
+<pre><code class="language-python">from shapely.geometry import Point, Polygon
+
+# Create a polygon
+boundary = Polygon([
+    (0, 0),
+    (10, 0),
+    (10, 10),
+    (0, 10)
+])
+
+# Create points
+inside_point = Point(5, 5)
+outside_point = Point(15, 15)
+
+print(boundary.contains(inside_point))
+print(boundary.contains(outside_point))
+print(boundary.intersects(inside_point))</code></pre>
+
+<p>
+    These tests are useful in applications such as checking whether a
+    location falls inside a city boundary, whether two roads intersect,
+    or whether a point touches the boundary of a particular area.
+</p>
+
+<h2>Using Shapely with GeoPandas</h2>
+
+<p>
+    Shapely focuses on geometry, while GeoPandas extends this functionality
+    by managing geometries together with tabular attributes and coordinate
+    reference systems. In a typical GIS workflow, GeoPandas stores geographic
+    features and Shapely performs many of the geometric operations on them.
+</p>
+
+<pre><code class="language-python">import geopandas as gpd
+
+# Read a spatial dataset
+gdf = gpd.read_file("cities.geojson")
+
+# Calculate the centroid of each geometry
+gdf["centroid"] = gdf.geometry.centroid
+
+# Calculate geometry area
+gdf["area"] = gdf.geometry.area
+
+print(gdf[["area", "centroid"]].head())</code></pre>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Shapely knows nothing about CRS: you must keep track of units.</p>
+    <p style="margin:0">
+        <strong>Important:</strong> Shapely performs calculations using
+        planar coordinates. It does not automatically understand geographic
+        coordinate systems. For meaningful area and distance measurements,
+        use an appropriate projected CRS, typically through GeoPandas.
+    </p>
 </div>
+
+<h2>Where Is Shapely Used?</h2>
+
+<ul>
+    <li>Finding locations that fall inside administrative boundaries.</li>
+    <li>Identifying overlapping land parcels or building footprints.</li>
+    <li>Calculating distances between geographic features.</li>
+    <li>Creating buffer zones around roads, rivers and facilities.</li>
+    <li>Combining, splitting and modifying spatial boundaries.</li>
+</ul>
+
+<p>
+    Shapely makes geometric analysis easier by providing a consistent set
+    of tools for working with spatial shapes. Understanding these operations
+    is an important step before moving into more advanced GIS analysis
+    with GeoPandas.
+</p>
+```

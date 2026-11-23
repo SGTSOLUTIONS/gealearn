@@ -1,61 +1,366 @@
-{{-- resources/views/learning/lessons/8-7-loops.blade.php --}}
+
+{{-- resources/views/learning/lessons/loops.blade.php --}}
 {{-- CONTENT ONLY --}}
 
 <p>
-    Loops repeat steps without rewriting them: once per feature, layer or file.
-    They are the engine of automation.
+    Loops allow a program to execute the same block of code repeatedly
+    without writing the instructions again. They are useful for processing
+    multiple files, features and records in GIS workflows.
 </p>
 
 <h2>Learning goals</h2>
+
 <ul>
-    <li>Understand for and while loops</li>
-    <li>Loop over files and features</li>
-    <li>Use break and continue</li>
+    <li>Understand how for and while loops work</li>
+    <li>Use loops to process sequences and collections</li>
+    <li>Apply the range() function in repetitive tasks</li>
+    <li>Control loops using break and continue</li>
+    <li>Use loops in practical GIS operations</li>
 </ul>
 
-<h2>Visual Guide: For and While Loops</h2>
-<div style="display: flex; justify-content: space-between; margin: 20px 0; font-size: 12px;">
-    <div style="width: 45%; border: 1px solid #ccc; border-radius: 6px; overflow: hidden; background: #282A35; color: #fff;">
-        <div style="padding: 6px 12px; background: #1e2b3c; font-size: 11px;">loops.py</div>
-        <div style="padding: 15px; font-family: Consolas, monospace; font-size: 13px; text-align: left;">
-            wards = ["A", "B", "C"]<br>
-            for w in wards:<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;print("Ward", w)<br><br>
-            n = 0<br>
-            while n &lt; 3:<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;n += 1
-        </div>
+<h2>Understanding Loops in Python</h2>
+
+<p>
+    A loop repeats a block of code based on a sequence or condition.
+    Python provides two main types of loops: <strong>for</strong> and
+    <strong>while</strong>.
+</p>
+
+<p>
+    A <strong>for loop</strong> processes each item in a sequence,
+    while a <strong>while loop</strong> continues executing as long
+    as its condition remains True.
+</p>
+
+<h3>Example: Using for and while loops</h3>
+
+<div style="background: #202938; border-radius: 8px; overflow: hidden; margin: 15px 0;">
+
+    <div style="background: #293548; color: #fff; padding: 10px 15px; font-size: 13px;">
+        loops.py
     </div>
-    <div style="width: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 11px;">
-        <div style="font-weight: bold; color: #282A35; margin-bottom: 5px;">for: one item at a time</div>
-        <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 15px;">
-            <div style="width: 30px; height: 30px; background: #c8e6c9; border: 1px solid #04AA6D; border-radius: 4px; display: flex; align-items: center; justify-content: center;">A</div>
-            <div style="width: 10px; border-top: 1px solid #FF9800;"></div>
-            <div style="width: 30px; height: 30px; background: #c8e6c9; border: 1px solid #04AA6D; border-radius: 4px; display: flex; align-items: center; justify-content: center;">B</div>
-            <div style="width: 10px; border-top: 1px solid #FF9800;"></div>
-            <div style="width: 30px; height: 30px; background: #c8e6c9; border: 1px solid #04AA6D; border-radius: 4px; display: flex; align-items: center; justify-content: center;">C</div>
-        </div>
-        <div style="font-weight: bold; color: #282A35; margin-bottom: 5px;">while: repeat until False</div>
-        <div style="border: 1px solid #ccc; padding: 4px 8px; border-radius: 20px; background: #f9f9f9;">n &lt; 3 ?</div>
-        <div style="color: #04AA6D; font-weight: bold; margin: 2px 0;">&darr; True</div>
-        <div style="border: 1px solid #ccc; padding: 4px 8px; border-radius: 4px; background: #fff3cd;">n += 1</div>
+
+    <pre style="color: #f1f5f9; padding: 18px; margin: 0; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code># For loop
+wards = ["North", "South", "East"]
+
+for ward in wards:
+    print("Ward:", ward)
+
+
+# While loop
+count = 0
+
+while count < 3:
+    print("Count:", count)
+    count += 1</code></pre>
+
+</div>
+
+<h3>How it works</h3>
+
+<ul>
+    <li><strong>For loop:</strong> Python takes each ward from the list and prints its name. It repeats until all items are processed.</li>
+    <li><strong>While loop:</strong> Python checks whether count is less than 3. It repeats the instructions and increases the count by 1 each time.</li>
+</ul>
+
+<p>
+    Both loops reduce repetitive coding, but they are used in different
+    situations depending on the task.
+</p>
+
+<h2>Visual Guide: For and While Loops</h2>
+
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+
+    <div style="width: 100%; max-width: 650px; font-family: Arial, sans-serif;">
+
+        <svg viewBox="0 0 620 360"
+             width="100%"
+             xmlns="http://www.w3.org/2000/svg"
+             role="img"
+             aria-label="Comparison of for and while loops">
+
+            <rect width="620" height="360" rx="8" fill="#f1f5f9"/>
+
+            <!-- For Loop Panel -->
+            <rect x="15" y="15" width="280" height="325"
+                  rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+
+            <text x="155" y="43" text-anchor="middle"
+                  font-size="17" font-weight="bold" fill="#245b78">
+                For Loop
+            </text>
+
+            <text x="155" y="68" text-anchor="middle"
+                  font-size="12" fill="#64748b">
+                One item at a time
+            </text>
+
+            <!-- Sequence -->
+            <rect x="45" y="95" width="52" height="38" rx="5"
+                  fill="#d9f1df" stroke="#31945a"/>
+            <rect x="119" y="95" width="52" height="38" rx="5"
+                  fill="#d9f1df" stroke="#31945a"/>
+            <rect x="193" y="95" width="52" height="38" rx="5"
+                  fill="#d9f1df" stroke="#31945a"/>
+
+            <text x="71" y="119" text-anchor="middle" font-size="13">A</text>
+            <text x="145" y="119" text-anchor="middle" font-size="13">B</text>
+            <text x="219" y="119" text-anchor="middle" font-size="13">C</text>
+
+            <path d="M97 114 H116 M171 114 H190"
+                  stroke="#e07835" stroke-width="2"/>
+
+            <path d="M155 145 V181"
+                  stroke="#64748b" stroke-width="1.8"
+                  fill="none"/>
+
+            <rect x="55" y="183" width="200" height="52"
+                  rx="6" fill="#e1efff" stroke="#3182ce"/>
+
+            <text x="155" y="205" text-anchor="middle"
+                  font-size="12" font-weight="bold" fill="#245b96">
+                Process each item
+            </text>
+
+            <text x="155" y="222" text-anchor="middle"
+                  font-size="11" fill="#245b96">
+                A → B → C
+            </text>
+
+            <path d="M155 235 V265"
+                  stroke="#64748b" stroke-width="1.8"
+                  fill="none"/>
+
+            <rect x="55" y="267" width="200" height="42"
+                  rx="6" fill="#dff4e5" stroke="#25a45b"/>
+
+            <text x="155" y="293" text-anchor="middle"
+                  font-size="12" font-weight="bold" fill="#176b3b">
+                Loop completed
+            </text>
+
+            <!-- While Loop Panel -->
+            <rect x="325" y="15" width="280" height="325"
+                  rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+
+            <text x="465" y="43" text-anchor="middle"
+                  font-size="17" font-weight="bold" fill="#245b78">
+                While Loop
+            </text>
+
+            <text x="465" y="68" text-anchor="middle"
+                  font-size="12" fill="#64748b">
+                Repeat until False
+            </text>
+
+            <!-- Condition -->
+            <rect x="385" y="95" width="160" height="42"
+                  rx="20" fill="#fff0ce" stroke="#e5a12c"/>
+
+            <text x="465" y="121" text-anchor="middle"
+                  font-size="13" font-weight="bold" fill="#73501a">
+                count &lt; 3?
+            </text>
+
+            <text x="465" y="157" text-anchor="middle"
+                  font-size="11" fill="#15945d" font-weight="bold">
+                True ↓
+            </text>
+
+            <path d="M465 138 V173"
+                  stroke="#16a36a" stroke-width="1.8"/>
+
+            <!-- Action -->
+            <rect x="385" y="175" width="160" height="42"
+                  rx="6" fill="#e1efff" stroke="#3182ce"/>
+
+            <text x="465" y="201" text-anchor="middle"
+                  font-size="13" fill="#245b96">
+                count += 1
+            </text>
+
+            <!-- Repeat arrow -->
+            <path d="M385 196 H350 V116 H382"
+                  fill="none" stroke="#3182ce" stroke-width="1.8"/>
+
+            <text x="342" y="155" font-size="10"
+                  fill="#3182ce" transform="rotate(-90 342 155)">
+                Repeat
+            </text>
+
+            <!-- False -->
+            <path d="M545 116 H570 V275 H545"
+                  fill="none" stroke="#e07835" stroke-width="1.8"/>
+
+            <text x="553" y="150" font-size="11"
+                  fill="#d66c30" font-weight="bold">
+                False
+            </text>
+
+            <!-- End -->
+            <rect x="385" y="277" width="160" height="32"
+                  rx="6" fill="#dff4e5" stroke="#25a45b"/>
+
+            <text x="465" y="298" text-anchor="middle"
+                  font-size="12" font-weight="bold" fill="#176b3b">
+                Loop completed
+            </text>
+
+        </svg>
+
     </div>
 </div>
 
-<p>
-    The diagram shows the difference between a for loop (which iterates over a sequence) and a while loop (which repeats until a condition is false).
+<p style="font-size: 13px; color: #64748b; text-align: center;">
+    A for loop processes each item in a sequence, while a while loop repeats as long as its condition is True.
 </p>
 
-<h2>Key Points (Q&A)</h2>
+<h2>Using the range() Function</h2>
+
+<p>
+    The <strong>range()</strong> function generates a sequence of numbers.
+    It is commonly used with for loops when a task needs to be repeated
+    a specific number of times.
+</p>
+
+<div style="background: #202938; border-radius: 8px; overflow: hidden; margin: 15px 0;">
+
+    <div style="background: #293548; color: #fff; padding: 10px 15px; font-size: 13px;">
+        range_example.py
+    </div>
+
+    <pre style="color: #f1f5f9; padding: 18px; margin: 0; overflow-x: auto; font-size: 13px; line-height: 1.9;"><code>for number in range(5):
+    print(number)</code></pre>
+
+</div>
+
+<p>
+    <strong>Output:</strong>
+</p>
+
+<div style="background: #eef2f7; border-radius: 6px; padding: 12px 16px; font-family: monospace; color: #26374b;">
+    0<br/>
+    1<br/>
+    2<br/>
+    3<br/>
+    4
+</div>
+
+<p>
+    The range(5) function generates numbers from 0 to 4.
+    The ending value (5) is not included.
+</p>
+
+<h2>Controlling Loops with break and continue</h2>
+
+<p>
+    Python provides <strong>break</strong> and <strong>continue</strong>
+    statements to control how loops execute.
+</p>
+
 <ul>
-    <li><strong>What does a for loop do?</strong> It repeats a block once for each item in a sequence.</li>
-    <li><strong>What does a while loop do?</strong> It repeats while a condition is True. Make sure it can end.</li>
-    <li><strong>How do I loop over files?</strong> <code>for p in Path("data").glob("*.shp"):</code>.</li>
-    <li><strong>What does range() do?</strong> It makes numbers: <code>range(3)</code> gives 0, 1, 2.</li>
-    <li><strong>What are break and continue?</strong> break stops the loop; continue skips to the next item.</li>
-    <li><strong>What is the GIS use?</strong> Apply the same steps to every feature, layer or file.</li>
+    <li><strong>break:</strong> Stops the loop immediately when a specified condition is met.</li>
+    <li><strong>continue:</strong> Skips the remaining instructions in the current iteration and moves to the next item.</li>
 </ul>
 
+<h3>Example: Using break and continue</h3>
+
+<div style="background: #202938; border-radius: 8px; overflow: hidden; margin: 15px 0;">
+
+    <div style="background: #293548; color: #fff; padding: 10px 15px; font-size: 13px;">
+        loop_control.py
+    </div>
+
+    <pre style="color: #f1f5f9; padding: 18px; margin: 0; overflow-x: auto; font-size: 13px; line-height: 1.5;"><code>wards = ["North", "South", "East", "West"]
+
+for ward in wards:
+
+    if ward == "East":
+        continue
+
+    if ward == "West":
+        break
+
+    print(ward)</code></pre>
+
+</div>
+
+<p>
+    <strong>Explanation:</strong> The loop processes the ward names one by one.
+    It skips East using continue and stops completely when it reaches West
+    using break. Therefore, only North and South are printed.
+</p>
+
+<h2>Looping Through Files and GIS Features</h2>
+
+<p>
+    Loops are particularly useful in GIS because projects often contain
+    multiple datasets and geographic features. Instead of processing
+    each item manually, a loop can perform the same operation on every item.
+</p>
+
+<h3>1. Processing Multiple GIS Files</h3>
+
+<p>
+    A for loop can be used to identify and process multiple shapefiles
+    stored in a folder.
+</p>
+
+<div style="background: #202938; border-radius: 8px; overflow: hidden; margin: 15px 0;">
+
+    <div style="background: #293548; color: #fff; padding: 10px 15px; font-size: 13px;">
+        process_files.py
+    </div>
+
+    <pre style="color: #f1f5f9; padding: 18px; margin: 0; overflow-x: auto; font-size: 13px; line-height: 1.9;"><code>from pathlib import Path
+
+folder = Path("data")
+
+for file in folder.glob("*.shp"):
+    print("Processing:", file.name)</code></pre>
+
+</div>
+
+<p>
+    This example searches the data folder for shapefiles and prints
+    the name of each matching file.
+</p>
+
+<h3>2. Processing GIS Features</h3>
+
+<p>
+    Loops can also process individual geographic features.
+    For example, a GeoDataFrame can be traversed to calculate
+    or inspect the area of each polygon.
+</p>
+
+<div style="background: #202938; border-radius: 8px; overflow: hidden; margin: 15px 0;">
+
+    <div style="background: #293548; color: #fff; padding: 10px 15px; font-size: 13px;">
+        process_features.py
+    </div>
+
+    <pre style="color: #f1f5f9; padding: 18px; margin: 0; overflow-x: auto; font-size: 13px; line-height: 1.9;"><code>for index, feature in gdf.iterrows():
+
+    area = feature.geometry.area
+
+    print("Feature:", index)
+    print("Area:", area)</code></pre>
+
+</div>
+
+<p>
+    The loop visits each row in the GeoDataFrame, accesses its geometry,
+    calculates its area and displays the result.
+    Use an appropriate projected CRS when calculating area in square metres.
+</p>
+
+
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Test a loop on two items before running it on thousands.</p>
+    <p style="margin: 0;">
+        <strong>Practical tip:</strong>
+        Test your loop with a small number of files or features first.
+        Check the output before running it on a large GIS dataset.
+    </p>
 </div>
