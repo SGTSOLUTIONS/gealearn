@@ -1,64 +1,184 @@
+
 {{-- resources/views/learning/lessons/8-16-rasterio.blade.php --}}
 {{-- CONTENT ONLY --}}
 
 <p>
-    Rasterio opens rasters and gives you the cell values as NumPy arrays.
-    It is the standard library for raster processing in Python.
+    Rasterio is a Python library used to read, write and process raster datasets such as GeoTIFF images. It provides access to raster cell values as NumPy arrays along with important spatial information such as coordinate reference systems, resolution and geographic extent. It is widely used in remote sensing and raster-based GIS analysis.
 </p>
 
 <h2>Learning goals</h2>
 <ul>
-    <li>Read a band as an array</li>
-    <li>Access metadata</li>
-    <li>Clip by polygon</li>
+    <li>Open and read raster datasets using Rasterio.</li>
+    <li>Access raster bands and cell values.</li>
+    <li>Inspect raster metadata and properties.</li>
+    <li>Clip and process raster data for GIS analysis.</li>
 </ul>
 
-<h2>Visual Guide: Rasterio Structure</h2>
-<div style="display: flex; justify-content: space-between; margin: 20px 0; font-size: 12px;">
-    <div style="width: 50%; border: 1px solid #ccc; border-radius: 6px; overflow: hidden; background: #282A35; color: #fff;">
-        <div style="padding: 6px 12px; background: #1e2b3c; font-size: 11px;">rasterio.py</div>
-        <div style="padding: 15px; font-family: Consolas, monospace; font-size: 13px; text-align: left;">
-            import rasterio<br>
-            with rasterio.open("dem.tif") as src:<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;band = src.read(1)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;print(src.crs, src.res)<br>
-            print(band.mean())
-        </div>
-    </div>
-    <div style="width: 45%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px;">
-        <div style="font-weight: bold; color: #282A35; margin-bottom: 5px;">Raster = array + metadata</div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; width: 80%; margin-bottom: 10px;">
-            <div style="background: #c8e6c9; padding: 6px; text-align: center;">112</div>
-            <div style="background: #c8e6c9; padding: 6px; text-align: center;">115</div>
-            <div style="background: #c8e6c9; padding: 6px; text-align: center;">121</div>
-            <div style="background: #c8e6c9; padding: 6px; text-align: center;">108</div>
-            <div style="background: #c8e6c9; padding: 6px; text-align: center;">111</div>
-            <div style="background: #c8e6c9; padding: 6px; text-align: center;">118</div>
-            <div style="background: #c8e6c9; padding: 6px; text-align: center;">104</div>
-            <div style="background: #c8e6c9; padding: 6px; text-align: center;">107</div>
-            <div style="background: #c8e6c9; padding: 6px; text-align: center;">113</div>
-        </div>
-        <div style="border: 2px solid #04AA6D; border-radius: 6px; padding: 8px; background: #fff; width: 80%; text-align: left;">
-            <strong style="color: #04AA6D;">Metadata</strong><br>
-            crs<br>transform<br>res<br>nodata<br>count
-        </div>
-    </div>
+<h2>1. Installing and Importing Rasterio</h2>
+<p>
+    Install Rasterio before using it in Python. NumPy is also useful for working with raster arrays.
+</p>
+
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">Installation</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.5; color:#f1f5f9;"><code>pip install rasterio numpy</code></pre>
+</div>
+
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">import_rasterio.py</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.5; color:#f1f5f9;"><code>import rasterio
+import numpy as np
+
+print("Rasterio imported successfully")</code></pre>
+</div>
+
+<p><strong>Output:</strong></p>
+<pre>Rasterio imported successfully</pre>
+
+<h2>2. Opening a Raster Dataset</h2>
+<p>
+    The <code>rasterio.open()</code> function opens a raster file. The <code>with</code> statement ensures that the dataset is properly closed after use.
+</p>
+
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">open_raster.py</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.5; color:#f1f5f9;"><code>import rasterio
+
+with rasterio.open("dem.tif") as src:
+    print("CRS:", src.crs)
+    print("Width:", src.width)
+    print("Height:", src.height)
+    print("Bands:", src.count)</code></pre>
 </div>
 
 <p>
-    The diagram shows the two parts of a raster in Rasterio: the data array (the grid of values) and the metadata (CRS, transform, resolution).
+    This example displays the raster's coordinate reference system, dimensions and number of bands. These properties help you understand the structure of the dataset before processing it.
 </p>
 
-<h2>Key Points (Q&A)</h2>
+<h2>3. Reading Raster Bands as NumPy Arrays</h2>
+<p>
+    Rasterio stores raster band values in NumPy arrays. The <code>read(1)</code> method reads the first band, allowing you to access individual pixel values and perform numerical calculations.
+</p>
+
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">read_band.py</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.5; color:#f1f5f9;"><code>import rasterio
+
+with rasterio.open("dem.tif") as src:
+    band = src.read(1)
+
+    print("Raster Array:")
+    print(band)
+
+    print("Mean Value:", band.mean())</code></pre>
+</div>
+
+<p>
+    Each array element represents a raster cell value. For example, in a Digital Elevation Model (DEM), these values represent ground elevation. The mean calculates the average value of the selected band.
+</p>
+
+<h2>4. Understanding Raster Metadata</h2>
+<p>
+    Raster metadata describes how raster data is stored and positioned geographically. It includes the CRS, pixel resolution, spatial transform, NoData value and band count.
+</p>
+
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">raster_metadata.py</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.5; color:#f1f5f9;"><code>import rasterio
+
+with rasterio.open("dem.tif") as src:
+    print("CRS:", src.crs)
+    print("Resolution:", src.res)
+    print("Transform:", src.transform)
+    print("NoData:", src.nodata)
+    print("Band Count:", src.count)
+    print("Bounds:", src.bounds)</code></pre>
+</div>
+
+<p>
+    The resolution describes the ground size of each pixel, while the transform connects pixel positions to geographic coordinates. The bounds describe the raster's spatial extent.
+</p>
+
+<h2>5. Clipping Raster Data Using a Polygon</h2>
+<p>
+    Rasterio can extract raster values within a selected polygon using <code>rasterio.mask.mask()</code>. This is useful when analysing a specific study area, district or administrative boundary.
+</p>
+
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">clip_raster.py</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.5; color:#f1f5f9;"><code>import rasterio
+from rasterio.mask import mask
+import geopandas as gpd
+
+# Read the boundary polygon
+boundary = gpd.read_file("study_area.shp")
+
+with rasterio.open("dem.tif") as src:
+    # Match the polygon CRS to the raster CRS
+    boundary = boundary.to_crs(src.crs)
+
+    # Clip the raster
+    clipped, transform = mask(
+        src,
+        boundary.geometry,
+        crop=True
+    )
+
+    # Update raster metadata
+    profile = src.profile.copy()
+    profile.update(
+        height=clipped.shape[1],
+        width=clipped.shape[2],
+        transform=transform
+    )
+
+    # Save the clipped raster
+    with rasterio.open("clipped_dem.tif", "w", **profile) as dst:
+        dst.write(clipped)
+
+print("Raster clipped successfully")</code></pre>
+</div>
+
+<p><strong>Output:</strong></p>
+<pre>Raster clipped successfully</pre>
+
+<p>
+    The output contains only the raster area covered by the selected polygon. Matching the polygon CRS with the raster CRS is important for accurate clipping.
+</p>
+
+<h2>6. Calculating Raster Statistics</h2>
+<p>
+    NumPy can be used with Rasterio to calculate statistics such as minimum, maximum and mean values. NoData cells should be excluded from calculations when they are represented by a NoData value.
+</p>
+
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">raster_statistics.py</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.5; color:#f1f5f9;"><code>import rasterio
+import numpy as np
+
+with rasterio.open("dem.tif") as src:
+    band = src.read(1, masked=True)
+
+    print("Minimum:", band.min())
+    print("Maximum:", band.max())
+    print("Mean:", band.mean())</code></pre>
+</div>
+
+<p>
+    The masked array excludes cells marked as NoData, helping produce more meaningful raster statistics.
+</p>
+
+<h2>7. Applications of Rasterio in GIS</h2>
+<p>
+    Rasterio is useful in many raster-based GIS and remote sensing tasks, including:
+</p>
 <ul>
-    <li><strong>What is Rasterio?</strong> A library that reads and writes rasters (e.g. GeoTIFF) as NumPy arrays.</li>
-    <li><strong>How do I read a band?</strong> <code>src.read(1)</code> returns band 1 as an array.</li>
-    <li><strong>Which metadata is available?</strong> crs, transform, res, nodata, count.</li>
-    <li><strong>How do I write a raster?</strong> <code>rasterio.open(out, "w", **profile)</code> then <code>dst.write(array, 1)</code>.</li>
-    <li><strong>How do I clip by polygon?</strong> <code>rasterio.mask.mask()</code>.</li>
-    <li><strong>What about NoData?</strong> Mask it before calculating statistics.</li>
+    <li>Analysing elevation data using Digital Elevation Models.</li>
+    <li>Processing satellite imagery for land cover studies.</li>
+    <li>Extracting raster data within administrative boundaries.</li>
+    <li>Calculating pixel-based statistics for environmental analysis.</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Always read the nodata value before doing statistics.</p>
+    <p style="margin:0"><strong>Practical tip:</strong> Always check the raster CRS, resolution and NoData value before performing raster analysis. These properties help prevent incorrect spatial results and statistics.</p>
 </div>

@@ -30,7 +30,7 @@
 <div class="example">
     <h2>Example</h2>
     <p>A government uses GIS to identify areas that need more schools or healthcare facilities.</p>
-</div>
+</diV>
 
 <h2>2. Economics</h2>
 <p>GIS helps businesses and governments understand economic activities and differences between locations.</p>
@@ -44,7 +44,7 @@
 </ul>
 
 <div class="example">
-    <h2>Example</h2>
+   <h2>Example</h2>
     <p>A company uses GIS to find a suitable location for a new supermarket based on population, roads, and nearby competitors.</p>
 </div>
 
