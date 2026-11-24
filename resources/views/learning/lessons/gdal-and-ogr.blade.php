@@ -17,7 +17,7 @@
     <li>Access GDAL and OGR through Python</li>
 </ul>
 
-<h2>Understanding GDAL and OGR</h2>
+<h2>GDAL and OGR</h2>
 
 <p>
     GDAL (Geospatial Data Abstraction Library) and OGR are components of

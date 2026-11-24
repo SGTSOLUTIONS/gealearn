@@ -34,7 +34,7 @@ print("PyProj imported successfully")</code></pre>
 <p><strong>Output:</strong></p>
 <pre>PyProj imported successfully</pre>
 
-<h2>2. Understanding Coordinate Reference Systems</h2>
+<h2>2. Coordinate Reference Systems</h2>
 <p>
     A Coordinate Reference System defines how locations are represented on the Earth's surface. PyProj provides the <code>CRS</code> class to describe and inspect different coordinate systems.
 </p>
