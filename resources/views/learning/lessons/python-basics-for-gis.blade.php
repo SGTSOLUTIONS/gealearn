@@ -35,49 +35,30 @@
     The choice depends on the type of work you want to perform.
 </p>
 
-<div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
-
-    <div style="flex: 1 1 220px; border: 1px solid #dbe2ea; border-radius: 7px; overflow: hidden;">
-        <div style="background: #79a7db; padding: 12px 15px; color: #1e40af; font-weight: bold;">
-            QGIS Python Console
-        </div>
-        <div style="padding: 14px; font-size: 14px;">
-            Run Python commands directly inside QGIS to access projects,
-            layers and geographic features.
-            <p style="margin-bottom: 0;"><strong>Shortcut:</strong> Ctrl + Alt + P</p>
-        </div>
+<div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
+    <div style="width: 22%; border: 2px solid #282A35; border-radius: 6px; text-align: center;">
+        <div style="background: #282A35; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">QGIS Python Console</div>
+        <div style="padding: 12px; font-size: 12px;">Run Python commands directly inside QGIS to access projects,
+            layers and geographic features.</div>
     </div>
-
-    <div style="flex: 1 1 220px; border: 1px solid #dbe2ea; border-radius: 7px; overflow: hidden;">
-        <div style="background: #68c96f; padding: 12px 15px; color: #166534; font-weight: bold;">
-            VS Code / IDLE
-        </div>
-        <div style="padding: 14px; font-size: 14px;">
-            Write, edit and run Python scripts in a code editor.
-            Suitable for developing and organising larger programs.
-        </div>
+    <div style="font-size: 20px; color: #FF9800;">&rarr;</div>
+    <div style="width: 22%; border: 2px solid #04AA6D; border-radius: 6px; text-align: center;">
+        <div style="background: #04AA6D; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">VS Code / IDLE</div>
+        <div style="padding: 12px; font-size: 12px;">Write, edit and run Python scripts in a code editor.
+            Suitable for developing and organising larger programs.</div>
     </div>
-
-    <div style="flex: 1 1 220px; border: 1px solid #dbe2ea; border-radius: 7px; overflow: hidden;">
-        <div style="background: #e3ca95; padding: 12px 15px; color: #92400e; font-weight: bold;">
-            Jupyter Notebook
-        </div>
-        <div style="padding: 14px; font-size: 14px;">
-            Write and execute code in separate cells. Useful for
-            experiments, data analysis and visualising results.
-        </div>
+    <div style="font-size: 20px; color: #FF9800;">&rarr;</div>
+    <div style="width: 22%; border: 2px solid #2196F3; border-radius: 6px; text-align: center;">
+        <div style="background: #2196F3; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">Jupyter Notebook</div>
+        <div style="padding: 12px; font-size: 12px;">Write and execute code in separate cells. Useful for
+            experiments, data analysis and visualising results.</div>
     </div>
-
-    <div style="flex: 1 1 220px; border: 1px solid #dbe2ea; border-radius: 7px; overflow: hidden;">
-        <div style="background: #9f8ebe; padding: 12px 15px; color: #6b21a8; font-weight: bold;">
-            Command Line
-        </div>
-        <div style="padding: 14px; font-size: 14px;">
-            Execute Python scripts through a terminal or command prompt.
-            Useful for running scripts and automating tasks.
-        </div>
+    <div style="font-size: 20px; color: #FF9800;">&rarr;</div>
+    <div style="width: 22%; border: 2px solid #FF9800; border-radius: 6px; text-align: center;">
+        <div style="background: #FF9800; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">Command Line</div>
+        <div style="padding: 12px; font-size: 12px;">Execute Python scripts through a terminal or command prompt.
+            Useful for running scripts and automating tasks.</div>
     </div>
-
 </div>
 
 <h2>Writing Your First Python Program</h2>
@@ -263,7 +244,7 @@ print("Step 3: Display results")</code></pre>
     <div style="padding: 10px 15px; background: #29384d; color: #e2e8f0; font-size: 13px;">
         GIS Example: Ward Information
     </div>
-    <pre style="margin: 0; padding: 20px; font-family: Consolas, monospace; font-size: 14px; line-height: 1.5; white-space: pre; overflow-x: auto; background: #1e293b; color: #f1f5f9;"><code>ward_name = "Ward A"
+    <pre style="margin: 0; padding: 20px; font-family: Consolas, monospace; font-size: 14px; line-height: 1.8; white-space: pre; overflow-x: auto; background: #1e293b; color: #f1f5f9;"><code>ward_name = "Ward A"
 population = 5400
 area_sq_km = 12.5
 
