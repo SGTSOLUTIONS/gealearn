@@ -8,9 +8,16 @@
 
 @section('content')
     @php
-        $currIndex = $lesson ? $flatLessons->search(fn($l) => $l->id === $lesson->id) : false;
-        $prev = $currIndex !== false && $currIndex > 0 ? $flatLessons[$currIndex - 1] : null;
-        $next = $currIndex !== false ? $flatLessons[$currIndex + 1] ?? null : null;
+        // 1. Reset the keys to 0, 1, 2, 3 so +1 and -1 always work
+        $sortedLessons = $flatLessons->values();
+        
+        // 2. Find exactly where this lesson is in that reset list
+        $currIndex = $lesson ? $sortedLessons->search(fn($l) => $l->id == $lesson->id) : false;
+        
+        // 3. Get Prev and Next safely (using ->get() prevents out-of-bounds errors)
+        $prev = ($currIndex !== false && $currIndex > 0) ? $sortedLessons->get($currIndex - 1) : null;
+        $next = ($currIndex !== false) ? $sortedLessons->get($currIndex + 1) : null;
+        
         $percent = $totalLessons > 0 ? round(($lessonIndex / $totalLessons) * 100) : 0;
     @endphp
 
@@ -46,17 +53,24 @@
             <main class="w3-main">
                 @if ($lesson)
 
+                    {{-- Top Navigation --}}
                     <div class="w3-pn">
                         @if ($prev)
-                            <a class="btn"
-                                href="{{ route('learning.lesson', ['course' => $course->slug, 'lesson' => $prev->slug ?: $prev->id]) }}">&#10094;
-                                Previous</a>
+                            <a class="btn" href="{{ route('learning.lesson', ['course' => $course->slug, 'lesson' => $prev->id]) }}">
+                                &#10094; Previous
+                            </a>
+                        @else
+                            <span class="btn" style="visibility: hidden;">&#10094; Previous</span>
                         @endif
+                        
                         <span class="spacer"></span>
+                        
                         @if ($next)
-                            <a class="btn"
-                                href="{{ route('learning.lesson', ['course' => $course->slug, 'lesson' => $next->slug ?: $next->id]) }}">Next
-                                &#10095;</a>
+                            <a class="btn" href="{{ route('learning.lesson', ['course' => $course->slug, 'lesson' => $next->id]) }}">
+                                Next &#10095;
+                            </a>
+                        @else
+                            <span class="btn" style="visibility: hidden;">Next &#10095;</span>
                         @endif
                     </div>
 
@@ -73,17 +87,24 @@
                         @endif
                     </article>
 
+                    {{-- Bottom Navigation --}}
                     <div class="w3-pn bottom">
                         @if ($prev)
-                            <a class="btn"
-                                href="{{ route('learning.lesson', ['course' => $course->slug, 'lesson' => $prev->slug ?: $prev->id]) }}">&#10094;
-                                Previous</a>
+                            <a class="btn" href="{{ route('learning.lesson', ['course' => $course->slug, 'lesson' => $prev->id]) }}">
+                                &#10094; Previous
+                            </a>
+                        @else
+                            <span class="btn" style="visibility: hidden;">&#10094; Previous</span>
                         @endif
+                        
                         <span class="spacer"></span>
+                        
                         @if ($next)
-                            <a class="btn"
-                                href="{{ route('learning.lesson', ['course' => $course->slug, 'lesson' => $next->slug ?: $next->id]) }}">Next
-                                &#10095;</a>
+                            <a class="btn" href="{{ route('learning.lesson', ['course' => $course->slug, 'lesson' => $next->id]) }}">
+                                Next &#10095;
+                            </a>
+                        @else
+                            <span class="btn" style="visibility: hidden;">Next &#10095;</span>
                         @endif
                     </div>
                 @else
