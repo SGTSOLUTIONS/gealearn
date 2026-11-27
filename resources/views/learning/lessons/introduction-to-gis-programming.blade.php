@@ -1,3 +1,4 @@
+
 {{-- resources/views/learning/lessons/8-1-intro.blade.php --}}
 {{-- CONTENT ONLY --}}
 
@@ -48,15 +49,88 @@
     The diagram shows the repetitive four-step cycle that every GIS script follows, and the four main reasons why scripting saves time and reduces errors compared to clicking through menus.
 </p>
 
-<h2>Key Points (Q&A)</h2>
+<h2>GIS Programming Workflow</h2>
+
+<p>
+    Each stage of a GIS script performs a specific task. Together, these
+    stages transform raw geographic data into useful information.
+    Understanding how they work makes it easier to plan and write
+    a complete GIS program.
+</p>
+
+<h3>1. Reading Geographic Data</h3>
+
+<p>
+    A script first needs to access the geographic data required for
+    the task. This data may come from spatial files, databases or
+    web services. For example, a script can load a road network
+    or a district boundary dataset.
+</p>
+
+<h3>2. Processing Geographic Data</h3>
+
+<p>
+    The loaded data may need preparation before analysis. Processing
+    includes filtering unwanted features, correcting data and
+    converting datasets into a suitable coordinate reference system.
+</p>
+
+<h3>3. Performing Spatial Analysis</h3>
+
+<p>
+    Spatial analysis helps identify patterns and relationships
+    between geographic features. Operations such as buffering,
+    spatial joining and calculating areas can be performed using
+    programming libraries.
+</p>
+
+<h3>4. Saving the Results</h3>
+
+<p>
+    After processing and analysis, the results can be exported
+    into formats such as GeoPackage, Shapefile, GeoJSON or GeoTIFF.
+    Scripts can also generate maps, tables and reports for further use.
+</p>
+
+<h2>Example: Automating a GIS Task</h2>
+
+<p>
+    Consider a project that identifies roads located within a
+    particular distance of a river. Instead of performing every
+    operation manually, a GIS script can organise the workflow
+    into a sequence of steps.
+</p>
+
 <ul>
-    <li><strong>What is GIS programming?</strong> Writing code to automate, extend and customise GIS work.</li>
-    <li><strong>Why script instead of clicking?</strong> Scripts are repeatable, fast on many files, less error-prone and easy to share.</li>
-    <li><strong>What can scripts do?</strong> Convert data, run analysis, build maps, update databases and create new tools.</li>
-    <li><strong>What is a typical script flow?</strong> Read data, process it, analyse it, then save or display the result.</li>
-    <li><strong>Do I need to be a programmer?</strong> No. Basic Python is enough to start; grow from small scripts.</li>
-    <li><strong>Where does the code run?</strong> QGIS or ArcGIS Python console, an editor such as VS Code, Jupyter notebooks or the command line.</li>
+    <li><strong>Read:</strong> Load the river and road datasets.</li>
+    <li><strong>Process:</strong> Check the coordinate reference system and prepare the data.</li>
+    <li><strong>Analyse:</strong> Create a buffer around the river and identify roads that intersect it.</li>
+    <li><strong>Save:</strong> Export the selected roads as a new spatial dataset.</li>
 </ul>
+
+<p>
+    This approach makes the workflow easier to repeat when new road
+    or river datasets become available. The same script can be used
+    again with updated input data.
+</p>
+
+<h2>Where Can GIS Programming Be Used?</h2>
+
+<p>
+    GIS programming can be performed in different software environments.
+    The choice depends on the programming language and the type of
+    GIS operation being developed.
+</p>
+
+<ul>
+    <li><strong>QGIS Python Console:</strong> Execute Python commands and access QGIS layers and projects.</li>
+    <li><strong>ArcGIS Python Environment:</strong> Automate ArcGIS operations using Python and ArcPy.</li>
+    <li><strong>VS Code and IDLE:</strong> Write, edit and execute Python scripts.</li>
+    <li><strong>Jupyter Notebook:</strong> Run code in separate cells and explore data analysis results.</li>
+    <li><strong>Command Line:</strong> Execute scripts and automate processing tasks through a terminal.</li>
+</ul>
+
+
 
 <div class="tip">
     <p style="margin:0"><strong>Tip:</strong> Script any task you will do more than twice.</p>
