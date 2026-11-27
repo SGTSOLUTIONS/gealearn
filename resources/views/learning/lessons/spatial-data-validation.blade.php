@@ -1,59 +1,53 @@
-{{-- resources/views/learning/lessons/4-14-validation.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
-    Validation checks that geometry, CRS and attributes are correct and usable before analysis.
-    Invalid geometry is the most common reason an overlay or buffer tool fails.
+    Data quality measures how well your data represents the real world and whether it is fit for your specific purpose. Good quality data is accurate, complete, consistent and current, which ensures your maps and analysis can be trusted.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Identify invalid geometry types</li>
-    <li>Run the Check Validity tool</li>
-    <li>Fix errors with the Fix Geometries tool</li>
+    <li>Identify the six dimensions of data quality</li>
+    <li>Recognise common sources of error</li>
+    <li>Evaluate whether data is fit for purpose</li>
+    <li>Document data lineage and checks</li>
 </ul>
 
-<h2>Visual Guide: Valid vs. Invalid Geometry</h2>
-<div style="display: flex; justify-content: space-between; margin: 20px 0; text-align: center; font-size: 11px;">
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 8px; background: #fff;">
-        <div style="height: 60px; background: #e8f5e9; border: 1px solid #04AA6D; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #04AA6D;">Valid Polygon</div>
-        <div style="margin-top: 5px; font-weight: bold;">Valid</div>
+<h3>The dimensions of data quality</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:12px; font-weight:bold; text-align:center;">Positional accuracy</div>
+        <div style="padding:15px; text-align:center;">
+            <p>How close a feature is to its true location on the ground.</p>
+        </div>
     </div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 8px; background: #fff;">
-        <div style="height: 60px; background: #ffcdd2; border: 1px solid #d9534f; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #d9534f;">Bowtie Shape</div>
-        <div style="margin-top: 5px; font-weight: bold;">Self-intersection</div>
+    <div style="border:1px solid #198754; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#198754; color:white; padding:12px; font-weight:bold; text-align:center;">Attribute accuracy</div>
+        <div style="padding:15px; text-align:center;">
+            <p>Whether the values in the table are correct and truthful.</p>
+        </div>
     </div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 8px; background: #fff;">
-        <div style="height: 60px; background: #ffcdd2; border: 1px solid #d9534f; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #d9534f;">Square with spike</div>
-        <div style="margin-top: 5px; font-weight: bold;">Duplicate point / spike</div>
+    <div style="border:1px solid #b45309; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#b45309; color:white; padding:12px; font-weight:bold; text-align:center;">Completeness</div>
+        <div style="padding:15px; text-align:center;">
+            <p>Whether all required features and attributes are present.</p>
+        </div>
     </div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 8px; background: #fff;">
-        <div style="height: 60px; background: #ffcdd2; border: 1px solid #d9534f; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #d9534f;">Square with hole outside</div>
-        <div style="margin-top: 5px; font-weight: bold;">Hole outside ring</div>
+    <div style="border:1px solid #6d28d9; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#6d28d9; color:white; padding:12px; font-weight:bold; text-align:center;">Consistency</div>
+        <div style="padding:15px; text-align:center;">
+            <p>Whether the data follows the same rules without contradictions.</p>
+        </div>
     </div>
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 12px;">
-    <div style="border: 2px solid #2196F3; border-radius: 6px; padding: 8px 12px; background: #e3f2fd;">Check Validity<br><span style="font-size: 10px; color: #666;">Vector &gt; Geometry Tools</span></div>
-    <div style="color: #FF9800; font-size: 20px;">&rarr;</div>
-    <div style="border: 2px solid #FF9800; border-radius: 6px; padding: 8px 12px; background: #fff3cd;">Fix Geometries<br><span style="font-size: 10px; color: #666;">Processing Toolbox</span></div>
-    <div style="color: #FF9800; font-size: 20px;">&rarr;</div>
-    <div style="border: 2px solid #04AA6D; border-radius: 6px; padding: 8px 12px; background: #e8f5e9;">Re-check<br><span style="font-size: 10px; color: #666;">should report 0 errors</span></div>
-</div>
-
-<p>
-    The diagram shows common types of invalid geometry alongside the workflow for fixing them. Always run Check Validity first, then use Fix Geometries to correct the errors, and finally re-check to confirm the geometry is clean.
-</p>
-
-<h2>Key Points</h2>
+<h3>Common sources of error</h3>
 <ul>
-    <li><strong>Geometry:</strong> run <strong>Vector &gt; Geometry Tools &gt; Check Validity</strong>; repair with <strong>Fix Geometries</strong>.</li>
-    <li>Common invalid shapes: <strong>self-intersections, duplicate points, spikes, holes outside the ring</strong>.</li>
-    <li><strong>CRS:</strong> every layer needs a known CRS – compare layers before combining them.</li>
-    <li><strong>Attributes:</strong> values inside valid ranges, no unexpected NULL or text.</li>
-    <li>Check the extent too: do the features fall where they should?</li>
+    <li><strong>Human error</strong> – typos during data entry, mislabelled fields, or misclassified features.</li>
+    <li><strong>Measurement error</strong> – limitations of GPS accuracy, digitising mistakes, or poor satellite resolution.</li>
+    <li><strong>Conversion errors</strong> – loss of precision or fields when moving between formats like Shapefile to GeoPackage.</li>
+    <li><strong>Outdated data</strong> – using old imagery or boundaries that have since changed on the ground.</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Invalid geometry is the most common reason an overlay or buffer tool fails.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> Always check the metadata (date, source, accuracy) before using a new dataset. If it lacks metadata, treat it with caution.
+    </p>
 </div>

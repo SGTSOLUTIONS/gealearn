@@ -1,63 +1,57 @@
-{{-- resources/views/learning/lessons/4-11-data-conversion.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
     Conversion changes data from one format, coordinate system or data type into another.
-    This is a common step when preparing data for analysis or sharing.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Understand the three types of conversion</li>
-    <li>Learn the difference between assigning and reprojecting</li>
-    <li>Convert between vector and raster data</li>
+    <li>Convert between formats</li>
+    <li>Tell reprojecting from assigning a CRS</li>
+    <li>Convert between data types</li>
+    <li>Use GDAL and OGR commands</li>
 </ul>
 
-<h2>Visual Guide: Types of Conversion</h2>
-<div style="display: flex; justify-content: space-between; margin: 20px 0; text-align: center; font-size: 12px;">
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="color: #282A35;">Format</strong>
-        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 4px;"><span style="border: 1px solid #ccc; padding: 2px 6px; border-radius: 3px; background: #f9f9f9;">Shapefile</span> &rarr; <span style="border: 1px solid #04AA6D; padding: 2px 6px; border-radius: 3px; background: #e8f5e9;">GeoPackage</span></div>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 4px;"><span style="border: 1px solid #ccc; padding: 2px 6px; border-radius: 3px; background: #f9f9f9;">GeoJSON</span> &rarr; <span style="border: 1px solid #FF9800; padding: 2px 6px; border-radius: 3px; background: #fff3cd;">KML</span></div>
+<h3>Three kinds of conversion</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:12px; font-weight:bold; text-align:center;">Format</div>
+        <div style="padding:15px; text-align:center;">
+            <p>Shapefile to GeoPackage; GeoJSON to KML.</p>
         </div>
     </div>
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="color: #282A35;">CRS (reproject)</strong>
-        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 4px;"><span style="border: 1px solid #ccc; padding: 2px 6px; border-radius: 3px; background: #f9f9f9;">EPSG:4326</span> &rarr; <span style="border: 1px solid #04AA6D; padding: 2px 6px; border-radius: 3px; background: #e8f5e9;">UTM zone</span></div>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 4px;"><span style="border: 1px solid #ccc; padding: 2px 6px; border-radius: 3px; background: #f9f9f9;">lat/long</span> &rarr; <span style="border: 1px solid #04AA6D; padding: 2px 6px; border-radius: 3px; background: #e8f5e9;">metres</span></div>
+    <div style="border:1px solid #198754; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#198754; color:white; padding:12px; font-weight:bold; text-align:center;">CRS (reproject)</div>
+        <div style="padding:15px; text-align:center;">
+            <p>EPSG:4326 (lat/long) to a UTM zone (metres).</p>
         </div>
     </div>
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="color: #282A35;">Data type</strong>
-        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 4px;"><span style="border: 1px solid #ccc; padding: 2px 6px; border-radius: 3px; background: #f9f9f9;">CSV</span> &rarr; <span style="border: 1px solid #04AA6D; padding: 2px 6px; border-radius: 3px; background: #e8f5e9;">points</span></div>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 4px;"><span style="border: 1px solid #ccc; padding: 2px 6px; border-radius: 3px; background: #f9f9f9;">Vector</span> &rarr; <span style="border: 1px solid #04AA6D; padding: 2px 6px; border-radius: 3px; background: #e8f5e9;">Raster</span></div>
+    <div style="border:1px solid #b45309; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#b45309; color:white; padding:12px; font-weight:bold; text-align:center;">Data type</div>
+        <div style="padding:15px; text-align:center;">
+            <p>CSV to points; vector to raster; raster to vector.</p>
         </div>
     </div>
 </div>
 
-<div style="background: #282A35; color: #fff; padding: 10px; border-radius: 6px; font-size: 11px; font-family: Consolas, monospace; margin-bottom: 20px;">
-    <strong style="color: #FF9800;">GDAL / OGR command line</strong><br>
-    ogr2ogr -f GPKG out.gpkg in.shp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # format<br>
-    ogr2ogr -t_srs EPSG:4326 out.shp in.shp &nbsp; # reproject<br>
-    gdal_translate -of GTiff in.img out.tif &nbsp;&nbsp;&nbsp;&nbsp; # raster
+<h3>GDAL / OGR command line</h3>
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">GDAL / OGR</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.9; color:#f1f5f9;"><code>ogr2ogr -f GPKG out.gpkg in.shp
+ogr2ogr -t_srs EPSG:4326 out.shp in.shp
+gdal_translate -of GTiff in.img out.tif 
+# format
+# reproject
+# raster </code></pre>
 </div>
 
-<p>
-    The diagram shows the three main types of conversion: changing format, changing coordinate system (reprojecting), and changing data type. The code snippet below shows how to perform these same tasks using GDAL/OGR command-line tools for batch processing.
-</p>
-
-<h2>Key Points</h2>
+<h3>Key points</h3>
 <ul>
-    <li><strong>Format:</strong> shapefile to GeoPackage, GeoJSON to KML (Save Features As).</li>
-    <li><strong>CRS:</strong> reprojecting changes the coordinate values; Assign CRS only corrects a wrong label.</li>
-    <li><strong>Type:</strong> CSV to points, vector to raster (Rasterize), raster to vector (Polygonize).</li>
-    <li>GDAL / OGR commands convert in batches from the command line.</li>
+    <li><strong>Reprojecting</strong> changes the coordinate values; <strong>Assign CRS</strong> only corrects a wrong label.</li>
+    <li>Vector to raster uses Rasterize; raster to vector uses Polygonize.</li>
     <li>After converting, check feature count, CRS and attributes.</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Data in the wrong place because the label was wrong: assign. Right place, different CRS needed: reproject.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> Data in the wrong place because the label was wrong: assign. Right place but a different CRS needed: reproject.
+    </p>
 </div>

@@ -57,7 +57,7 @@
 </p>
 
 <h2>Key Points (Practice Checklist)</h2>
-<ul>
+<ul>    
     <li>Name the format of five different files and say what each one stores.</li>
     <li>Convert a shapefile to GeoPackage and reproject it to another CRS.</li>
     <li>Load a CSV with coordinates and export it as spatial data.</li>

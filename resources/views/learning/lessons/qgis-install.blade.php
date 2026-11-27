@@ -1,52 +1,70 @@
-{{-- resources/views/learning/lessons/3-2-qgis-install.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
-    QGIS is a free, open-source desktop GIS. Installing it takes four simple steps.
+    QGIS is a free, open-source desktop GIS that runs on Windows, macOS and Linux.
+    Installing it takes four simple steps. Always download from the official site
+    so you get a clean build that already bundles GDAL and the Processing tools.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Learn how to download and install QGIS</li>
-    <li>Understand the difference between LTR and Latest versions</li>
-    <li>Verify your installation</li>
+    <li>Download QGIS from the official site</li>
+    <li>Choose between the LTR and the Latest release</li>
+    <li>Install and launch QGIS</li>
+    <li>Check the installed version</li>
 </ul>
 
-<h2>Visual Guide: Installation Steps</h2>
-<div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
-    <div style="width: 22%; border: 2px solid #282A35; border-radius: 6px; text-align: center;">
-        <div style="background: #282A35; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">1. Download</div>
-        <div style="padding: 12px; font-size: 12px;">Go to qgis.org then Download</div>
+<h3>Installation steps</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:10px; font-weight:bold; text-align:center;">1. Download</div>
+        <div style="padding:15px; text-align:center; font-size:14px;">Go to qgis.org, then Download. Pick the installer for your operating system.</div>
     </div>
-    <div style="font-size: 24px; color: #FF9800; font-weight: bold;">&rarr;</div>
-    <div style="width: 22%; border: 2px solid #04AA6D; border-radius: 6px; text-align: center;">
-        <div style="background: #04AA6D; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">2. Choose Version</div>
-        <div style="padding: 12px; font-size: 12px;">LTR = stable<br>Latest = newest features</div>
+    <div style="border:1px solid #198754; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#198754; color:white; padding:10px; font-weight:bold; text-align:center;">2. Choose version</div>
+        <div style="padding:15px; text-align:center; font-size:14px;">LTR is stable; Latest has the newest features. Beginners should choose LTR.</div>
     </div>
-    <div style="font-size: 24px; color: #FF9800; font-weight: bold;">&rarr;</div>
-    <div style="width: 22%; border: 2px solid #2196F3; border-radius: 6px; text-align: center;">
-        <div style="background: #2196F3; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">3. Install</div>
-        <div style="padding: 12px; font-size: 12px;">Run the installer<br>Keep default options</div>
+    <div style="border:1px solid #245b83; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:10px; font-weight:bold; text-align:center;">3. Install</div>
+        <div style="padding:15px; text-align:center; font-size:14px;">Run the installer and keep the default options. On Windows you may need admin rights.</div>
     </div>
-    <div style="font-size: 24px; color: #FF9800; font-weight: bold;">&rarr;</div>
-    <div style="width: 22%; border: 2px solid #FF9800; border-radius: 6px; text-align: center;">
-        <div style="background: #FF9800; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">4. Launch</div>
-        <div style="padding: 12px; font-size: 12px;">Open QGIS<br>Help > About shows version</div>
+    <div style="border:1px solid #b45309; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#b45309; color:white; padding:10px; font-weight:bold; text-align:center;">4. Launch</div>
+        <div style="padding:15px; text-align:center; font-size:14px;">Open QGIS. Help &gt; About shows the version and build details.</div>
     </div>
-</div>
-<div style="text-align: center; margin-bottom: 20px; font-size: 13px; color: #5f6368;">
-    <strong>Runs on:</strong> Windows &nbsp;|&nbsp; macOS &nbsp;|&nbsp; Linux
 </div>
 
-<h2>Key Points</h2>
+<h3>Which version?</h3>
+<div style="border-radius:8px; overflow:hidden; margin:15px 0;">
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <tr style="background:#eef3f8;">
+            <th style="padding:10px; text-align:left;">LTR (Long Term Release)</th>
+            <th style="padding:10px; text-align:left;">Latest release</th>
+        </tr>
+        <tr>
+            <td style="padding:10px;">The most stable choice for learning and daily work. Fewer surprises between sessions.</td>
+            <td style="padding:10px;">Newer features, but it changes more often. Best if you need the newest tools.</td>
+        </tr>
+    </table>
+</div>
+
+<h3>Before you install</h3>
 <ul>
-    <li>Download only from the official site: <strong>qgis.org</strong>.</li>
-    <li><strong>LTR (Long Term Release)</strong> is the most stable choice for learning and daily work.</li>
-    <li><strong>Latest</strong> release has newer features but may change more often.</li>
-    <li>The installer already bundles GDAL and the Processing tools – no extra setup.</li>
-    <li>Check the version in <strong>Help > About</strong> after the first launch.</li>
+    <li>Use a supported 64-bit operating system with enough free disk space.</li>
+    <li>On Windows you may need administrator rights to complete the install.</li>
+    <li>Close other GIS programs during the installation to avoid file locks.</li>
+    <li>Download only from the official site; the installer already bundles GDAL and the Processing tools.</li>
+</ul>
+
+<h3>After the first launch</h3>
+<ul>
+    <li><strong>Version number:</strong> Help &gt; About</li>
+    <li><strong>Processing Toolbox:</strong> View &gt; Panels &gt; Processing Toolbox</li>
+    <li><strong>Plugins:</strong> Plugins &gt; Manage and Install Plugins</li>
+    <li><strong>Language and units:</strong> Settings &gt; Options &gt; General</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> On Windows keep the default installer options; it is the quickest path to a working setup.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> On Windows keep the default installer options;
+        it is the quickest path to a working setup with GDAL included.
+    </p>
 </div>

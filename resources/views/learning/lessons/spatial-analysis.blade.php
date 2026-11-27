@@ -1,66 +1,62 @@
-{{-- resources/views/learning/lessons/5-1-spatial-analysis.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
     Spatial analysis uses the location of features to answer questions and reveal patterns that a plain table cannot show.
-    It moves you from simply viewing a map to understanding what the data means geographically.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Understand the workflow of spatial analysis</li>
-    <li>Identify the main tool groups covered in this module</li>
-    <li>Choose the right questions to ask of your data</li>
+    <li>Describe what spatial analysis does</li>
+    <li>Follow the four-step workflow</li>
+    <li>Know the tool groups of this module</li>
+    <li>Choose a CRS for measuring</li>
 </ul>
 
-<h2>Visual Guide: Analysis Workflow & Tool Groups</h2>
-<div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; text-align: center; font-size: 12px;">
-    <div style="width: 22%; border: 2px solid #282A35; border-radius: 6px; overflow: hidden;">
-        <div style="background: #282A35; color: #fff; padding: 6px; font-weight: bold;">1 Ask</div>
-        <div style="padding: 8px; background: #fff;">Which schools are near a river?</div>
+<h3>The analysis workflow</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; padding:12px; background:#f5f8fc; text-align:center;">
+        <div style="color:#245b83; font-weight:bold; margin-bottom:5px;">1 Ask</div>
+        <div style="font-size:14px;">Which schools are near a river?</div>
     </div>
-    <div style="font-size: 20px; color: #FF9800;">&rarr;</div>
-    <div style="width: 22%; border: 2px solid #04AA6D; border-radius: 6px; overflow: hidden;">
-        <div style="background: #04AA6D; color: #fff; padding: 6px; font-weight: bold;">2 Prepare</div>
-        <div style="padding: 8px; background: #fff;">same CRS, clean data</div>
+    <div style="border:1px solid #198754; border-radius:8px; padding:12px; background:#f5f8fc; text-align:center;">
+        <div style="color:#198754; font-weight:bold; margin-bottom:5px;">2 Prepare</div>
+        <div style="font-size:14px;">Same CRS, clean data.</div>
     </div>
-    <div style="font-size: 20px; color: #FF9800;">&rarr;</div>
-    <div style="width: 22%; border: 2px solid #2196F3; border-radius: 6px; overflow: hidden;">
-        <div style="background: #2196F3; color: #fff; padding: 6px; font-weight: bold;">3 Analyse</div>
-        <div style="padding: 8px; background: #fff;">buffer, overlay, query, measure</div>
+    <div style="border:1px solid #b45309; border-radius:8px; padding:12px; background:#f5f8fc; text-align:center;">
+        <div style="color:#b45309; font-weight:bold; margin-bottom:5px;">3 Analyse</div>
+        <div style="font-size:14px;">Buffer, overlay, query, measure.</div>
     </div>
-    <div style="font-size: 20px; color: #FF9800;">&rarr;</div>
-    <div style="width: 22%; border: 2px solid #FF9800; border-radius: 6px; overflow: hidden;">
-        <div style="background: #FF9800; color: #fff; padding: 6px; font-weight: bold;">4 Present</div>
-        <div style="padding: 8px; background: #fff;">map, table, report</div>
+    <div style="border:1px solid #6d28d9; border-radius:8px; padding:12px; background:#f5f8fc; text-align:center;">
+        <div style="color:#6d28d9; font-weight:bold; margin-bottom:5px;">4 Present</div>
+        <div style="font-size:14px;">Map, table, report.</div>
     </div>
 </div>
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; font-size: 11px; text-align: center;">
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 6px; background: #f9f9f9;"><strong>Queries</strong><br>5.2 – 5.3</div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 6px; background: #f9f9f9;"><strong>Buffer / proximity</strong><br>5.4, 5.12</div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 6px; background: #f9f9f9;"><strong>Overlay & editing</strong><br>5.5 – 5.11</div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 6px; background: #f9f9f9;"><strong>Network</strong><br>5.13</div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 6px; background: #f9f9f9;"><strong>Measure</strong><br>5.14</div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 6px; background: #f9f9f9;"><strong>Raster</strong><br>5.15 – 5.16</div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 6px; background: #f9f9f9;"><strong>Terrain</strong><br>5.17 – 5.20</div>
-    <div style="width: 22%; border: 1px solid #ccc; border-radius: 6px; padding: 6px; background: #f9f9f9;"><strong>Locate and field</strong><br>5.21 – 5.25</div>
+<h3>Tool groups in this module</h3>
+<div style="border-radius:8px; overflow:hidden; margin:15px 0;">
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <tr style="background:#eef3f8;">
+            <th style="padding:10px; text-align:left;">Group</th>
+            <th style="padding:10px; text-align:left;">Topics</th>
+        </tr>
+        <tr><td style="padding:10px;">Queries</td><td style="padding:10px;">5.2 – 5.3</td></tr>
+        <tr><td style="padding:10px;">Buffer and proximity</td><td style="padding:10px;">5.4, 5.12</td></tr>
+        <tr><td style="padding:10px;">Overlay and editing</td><td style="padding:10px;">5.5 – 5.11</td></tr>
+        <tr><td style="padding:10px;">Network</td><td style="padding:10px;">5.13</td></tr>
+        <tr><td style="padding:10px;">Measure</td><td style="padding:10px;">5.14</td></tr>
+        <tr><td style="padding:10px;">Raster</td><td style="padding:10px;">5.15 – 5.16</td></tr>
+        <tr><td style="padding:10px;">Terrain</td><td style="padding:10px;">5.17 – 5.20</td></tr>
+        <tr><td style="padding:10px;">Locate and field</td><td style="padding:10px;">5.21 – 5.25</td></tr>
+    </table>
 </div>
 
-<p>
-    The diagram shows the four-step spatial analysis workflow and the tool groups you will use throughout this module. Every analysis starts with a clear question and ends with a presentable result.
-</p>
-
-<h2>Key Points (Q&A)</h2>
+<h3>Where to start</h3>
 <ul>
-    <li><strong>What does spatial analysis do?</strong> It uses the location of features to answer questions and reveal patterns that a plain table cannot show.</li>
-    <li><strong>What questions does it answer?</strong> Where is it? What is near it? What overlaps it? How far or how long?</li>
-    <li><strong>What is the basic workflow?</strong> Ask a clear question, prepare the data, choose a tool, check the result.</li>
-    <li><strong>Which CRS should I use for measuring?</strong> A projected CRS (metres).</li>
-    <li><strong>Where are the analysis tools?</strong> In the Processing Toolbox (Ctrl+Alt+T) and the Vector and Raster menus.</li>
-    <li><strong>What are the main tool groups?</strong> Queries, buffers, overlays, proximity, network, raster and terrain analysis.</li>
+    <li>Spatial analysis answers where it is, what is near it, what overlaps it, how far or how long.</li>
+    <li>Find the tools in the Processing Toolbox (Ctrl+Alt+T) and in the Vector and Raster menus.</li>
+    <li>Use a projected CRS (metres) whenever you measure.</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Write the question in one sentence first — it tells you which tool to use.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> Write the question in one sentence first – it tells you which tool to use.
+    </p>
 </div>

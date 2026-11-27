@@ -1,65 +1,59 @@
-{{-- resources/views/learning/lessons/4-12-data-cleaning.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
     Data cleaning finds and fixes errors in the data so analysis results can be trusted.
-    Errors multiply through every later step, so cleaning should happen early.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Identify common data errors</li>
-    <li>Fix text and numeric issues</li>
+    <li>Recognise typical data problems</li>
+    <li>Find errors with sorting and expressions</li>
+    <li>Fix text with the Field Calculator</li>
     <li>Remove duplicates safely</li>
 </ul>
 
-<h2>Visual Guide: Before and After Cleaning</h2>
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-    <div style="width: 48%; border: 1px solid #ccc; overflow: hidden; border-radius: 6px;">
-        <div style="background: #d9534f; color: #fff; padding: 6px; font-size: 12px; font-weight: bold;">Before</div>
-        <table style="width: 100%; font-size: 11px; border-collapse: collapse; margin: 0;">
-            <thead>
-                <tr style="background: #f1f1f1;"><th style="padding: 4px; border: 1px solid #ddd;">id</th><th style="padding: 4px; border: 1px solid #ddd;">name</th><th style="padding: 4px; border: 1px solid #ddd;">population</th></tr>
-            </thead>
-            <tbody>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">1</td><td style="padding: 4px; border: 1px solid #ddd;">Ward A</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">5400</td></tr>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">2</td><td style="padding: 4px; border: 1px solid #ddd;">ward a</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">5400</td></tr>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">3</td><td style="padding: 4px; border: 1px solid #ddd;">Ward B</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">NULL</td></tr>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">4</td><td style="padding: 4px; border: 1px solid #ddd;">Ward C</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">-780</td></tr>
-            </tbody>
-        </table>
-        <div style="padding: 5px; font-size: 10px; color: #d9534f;">Spaces &bull; duplicate &bull; missing &bull; wrong value</div>
-    </div>
-    <div style="width: 4%; text-align: center; font-size: 20px; color: #04AA6D; align-self: center;">&rarr;</div>
-    <div style="width: 48%; border: 1px solid #ccc; overflow: hidden; border-radius: 6px;">
-        <div style="background: #04AA6D; color: #fff; padding: 6px; font-size: 12px; font-weight: bold;">After</div>
-        <table style="width: 100%; font-size: 11px; border-collapse: collapse; margin: 0;">
-            <thead>
-                <tr style="background: #f1f1f1;"><th style="padding: 4px; border: 1px solid #ddd;">id</th><th style="padding: 4px; border: 1px solid #ddd;">name</th><th style="padding: 4px; border: 1px solid #ddd;">population</th></tr>
-            </thead>
-            <tbody>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">1</td><td style="padding: 4px; border: 1px solid #ddd;">Ward A</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">5400</td></tr>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">3</td><td style="padding: 4px; border: 1px solid #ddd;">Ward B</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">4100</td></tr>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">4</td><td style="padding: 4px; border: 1px solid #ddd;">Ward C</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">7800</td></tr>
-            </tbody>
-        </table>
-        <div style="padding: 5px; font-size: 10px; color: #04AA6D;">Trimmed &bull; unique &bull; filled &bull; corrected</div>
-    </div>
+<h3>Before cleaning</h3>
+<div style="border-radius:8px; overflow:hidden; margin:15px 0;">
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <tr style="background:#eef3f8;">
+            <th style="padding:10px; text-align:left;">id</th>
+            <th style="padding:10px; text-align:left;">name</th>
+            <th style="padding:10px; text-align:left;">population</th>
+            <th style="padding:10px; text-align:left;">Problem</th>
+        </tr>
+        <tr><td style="padding:10px;">1</td><td style="padding:10px;">Ward A</td><td style="padding:10px;">5400</td><td style="padding:10px;">None</td></tr>
+        <tr><td style="padding:10px;">2</td><td style="padding:10px;">ward a</td><td style="padding:10px;">5400</td><td style="padding:10px;">Duplicate and inconsistent spelling</td></tr>
+        <tr><td style="padding:10px;">3</td><td style="padding:10px;">Ward B</td><td style="padding:10px;">NULL</td><td style="padding:10px;">Missing value</td></tr>
+        <tr><td style="padding:10px;">4</td><td style="padding:10px;">Ward C</td><td style="padding:10px;">-780</td><td style="padding:10px;">Impossible value</td></tr>
+    </table>
 </div>
 
-<p>
-    The diagram compares a dirty table with a cleaned one. Notice the duplicate "ward a" has been merged, the missing NULL value has been filled (or removed), the negative population has been corrected, and extra spaces have been trimmed.
-</p>
+<h3>After cleaning</h3>
+<div style="border-radius:8px; overflow:hidden; margin:15px 0;">
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <tr style="background:#eef3f8;">
+            <th style="padding:10px; text-align:left;">id</th>
+            <th style="padding:10px; text-align:left;">name</th>
+            <th style="padding:10px; text-align:left;">population</th>
+        </tr>
+        <tr><td style="padding:10px;">1</td><td style="padding:10px;">Ward A</td><td style="padding:10px;">5400</td></tr>
+        <tr><td style="padding:10px;">3</td><td style="padding:10px;">Ward B</td><td style="padding:10px;">4100</td></tr>
+        <tr><td style="padding:10px;">4</td><td style="padding:10px;">Ward C</td><td style="padding:10px;">7800</td></tr>
+    </table>
+</div>
 
-<h2>Key Points</h2>
+<h3>Typical fixes</h3>
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">Field Calculator and selection</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.9; color:#f1f5f9;"><code>title(trim("name")) -- trim spaces, fix capitals
+"population" IS NULL -- select missing values</code></pre>
+</div>
+
 <ul>
-    <li>Typical problems: duplicates, missing values, extra spaces, inconsistent spelling, impossible values.</li>
-    <li>Find them by sorting, filtering or selecting by expression, e.g. <code>"population" IS NULL</code>.</li>
-    <li>Fix text in the Field Calculator with <code>trim()</code>, <code>upper()</code> and <code>title()</code>.</li>
-    <li>Remove duplicates: <strong>Delete duplicate geometries</strong> or <strong>Delete duplicates by attribute</strong>.</li>
+    <li>Delete duplicates: Delete duplicate geometries or Delete duplicates by attribute.</li>
     <li>Always work on a copy and keep the original data untouched.</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Clean first, then analyse — errors multiply through every later step.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> Clean first, then analyse – errors multiply through every later step.
+    </p>
 </div>

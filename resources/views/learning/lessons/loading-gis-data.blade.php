@@ -1,46 +1,63 @@
-{{-- resources/views/learning/lessons/3-6-loading-data.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
-    Data is added to a project from files, databases, or web services.
-    QGIS supports many formats, from simple vector files to complex web map tiles.
+    Data is added to a project from files, databases or web services. QGIS can read
+    most common GIS formats directly, so you rarely need to convert files before
+    opening them. Choosing a sensible default format such as GeoPackage avoids many
+    common problems later.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Learn how to load vector, raster, and tabular data</li>
+    <li>Add vector, raster and tabular data</li>
     <li>Use the Data Source Manager</li>
-    <li>Understand the importance of keeping shapefile components together</li>
+    <li>Add web services</li>
 </ul>
 
-<h2>Visual Guide: Loading Data Flow</h2>
-<div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
-    <div style="width: 30%; display: flex; flex-direction: column; gap: 8px;">
-        <div style="border: 2px solid #282A35; border-radius: 6px; padding: 6px 10px; font-size: 12px;"><strong>Vector:</strong> .shp, .geojson, .gpkg, .kml</div>
-        <div style="border: 2px solid #04AA6D; border-radius: 6px; padding: 6px 10px; font-size: 12px;"><strong>Raster:</strong> .tif, DEM, imagery</div>
-        <div style="border: 2px solid #2196F3; border-radius: 6px; padding: 6px 10px; font-size: 12px;"><strong>Tabular:</strong> .csv, .xlsx (X, Y columns)</div>
-        <div style="border: 2px solid #FF9800; border-radius: 6px; padding: 6px 10px; font-size: 12px;"><strong>Web Services:</strong> WMS, WFS, XYZ tiles</div>
+<h3>Data types</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #cbd5e1; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#198754; color:white; padding:12px; font-weight:bold; text-align:center;">Vector</div>
+        <div style="padding:15px; text-align:center;"><p><code>.shp</code>, <code>.geojson</code>, <code>.gpkg</code>, <code>.kml</code></p></div>
     </div>
-    <div style="width: 10%; text-align: center; font-size: 20px; color: #999;">&rarr;</div>
-    <div style="width: 30%; border: 2px solid #282A35; border-radius: 6px; text-align: center; background: #282A35; color: #fff;">
-        <div style="padding: 15px; font-size: 14px; font-weight: bold;">Data Source Manager<br><span style="font-size: 12px; font-weight: normal;">Ctrl+L &nbsp;|&nbsp; Layer > Add Layer</span></div>
+    <div style="border:1px solid #cbd5e1; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:12px; font-weight:bold; text-align:center;">Raster</div>
+        <div style="padding:15px; text-align:center;"><p><code>.tif</code>, DEM, imagery</p></div>
     </div>
-    <div style="width: 10%; text-align: center; font-size: 20px; color: #999;">&rarr;</div>
-    <div style="width: 20%; display: flex; flex-direction: column; gap: 8px;">
-        <div style="border: 2px solid #04AA6D; border-radius: 6px; padding: 8px; text-align: center; font-size: 12px;">Layers panel<br><span style="font-size: 10px; color: #666;">(layer appears in list)</span></div>
-        <div style="border: 2px solid #2196F3; border-radius: 6px; padding: 8px; text-align: center; font-size: 12px;">Map canvas<br><span style="font-size: 10px; color: #666;">(data is drawn)</span></div>
+    <div style="border:1px solid #cbd5e1; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#b45309; color:white; padding:12px; font-weight:bold; text-align:center;">Tabular</div>
+        <div style="padding:15px; text-align:center;"><p><code>.csv</code>, <code>.xlsx</code> with x and y columns</p></div>
+    </div>
+    <div style="border:1px solid #cbd5e1; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#6d28d9; color:white; padding:12px; font-weight:bold; text-align:center;">Web services</div>
+        <div style="padding:15px; text-align:center;"><p>WMS, WFS and XYZ tiles</p></div>
     </div>
 </div>
 
-<h2>Key Points</h2>
+<h3>Ways to add data</h3>
 <ul>
-    <li>Menu: <strong>Layer > Add Layer</strong> – vector, raster, delimited text (CSV) and more.</li>
-    <li>Fastest way: <strong>drag a file</strong> from the Browser panel or folder onto the map canvas.</li>
-    <li><strong>Data Source Manager (Ctrl+L)</strong> gathers every source type in one window.</li>
-    <li>Web data such as <strong>XYZ tiles</strong> (OpenStreetMap), WMS and WFS can be added directly.</li>
-    <li>A shapefile is several files (.shp, .shx, .dbf, .prj) – keep them together.</li>
+    <li><strong>Menu:</strong> Layer &gt; Add Layer (vector, raster, delimited text and more).</li>
+    <li><strong>Drag and drop:</strong> drag a file from the Browser panel or a folder onto the map canvas.</li>
+    <li><strong>Data Source Manager:</strong> <code>Ctrl+L</code> gathers every source type in one window.</li>
 </ul>
 
+<h3>Which vector format?</h3>
+<ul>
+    <li><strong>Shapefile (.shp)</strong> – very common but made of several files, with short field names. Keep <code>.shp</code>, <code>.shx</code>, <code>.dbf</code> and <code>.prj</code> together.</li>
+    <li><strong>GeoPackage (.gpkg)</strong> – one modern file that can hold many layers. The best default.</li>
+    <li><strong>GeoJSON (.geojson)</strong> – text based and popular for web maps.</li>
+</ul>
+
+<h3>Add a CSV with coordinates</h3>
+<ol>
+    <li>Open Layer &gt; Add Layer &gt; Add Delimited Text Layer.</li>
+    <li>Choose the CSV file.</li>
+    <li>Set X field = longitude and Y field = latitude.</li>
+    <li>Set the Geometry CRS to EPSG:4326, then click Add.</li>
+</ol>
+
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> After loading, glance at the layer's CRS (right-click > Layer CRS) before you analyse.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> After loading, glance at the layer's CRS
+        (right-click &gt; Layer CRS) before you analyse, because a wrong CRS makes
+        every measurement unreliable.
+    </p>
 </div>

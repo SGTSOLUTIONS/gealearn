@@ -1,68 +1,63 @@
-{{-- resources/views/learning/lessons/4-6-csv-excel.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
     CSV and Excel files store tables. When they contain coordinate columns, GIS can turn every row into a point.
-    This is one of the most common ways to bring field data into a GIS.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Load a CSV file as a spatial layer</li>
-    <li>Set the correct X and Y fields</li>
-    <li>Prepare tabular data for GIS use</li>
+    <li>Prepare a table for loading</li>
+    <li>Load a CSV with coordinates</li>
+    <li>Set the correct CRS</li>
+    <li>Save the result as a spatial file</li>
 </ul>
 
-<h2>Visual Guide: CSV to Points</h2>
-<div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
-    <div style="width: 35%; border: 1px solid #ccc; overflow: hidden;">
-        <div style="background: #282A35; color: #fff; padding: 6px; text-align: center; font-size: 12px; font-weight: bold;">points.csv</div>
-        <table style="width: 100%; font-size: 11px; border-collapse: collapse; margin: 0;">
-            <thead>
-                <tr style="background: #04AA6D; color: #fff;">
-                    <th style="padding: 4px; border: 1px solid #ddd;">id</th>
-                    <th style="padding: 4px; border: 1px solid #ddd;">name</th>
-                    <th style="padding: 4px; border: 1px solid #ddd;">lon</th>
-                    <th style="padding: 4px; border: 1px solid #ddd;">lat</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">1</td><td style="padding: 4px; border: 1px solid #ddd;">Site A</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">78.10</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">20.40</td></tr>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">2</td><td style="padding: 4px; border: 1px solid #ddd;">Site B</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">78.45</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">20.60</td></tr>
-                <tr><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">3</td><td style="padding: 4px; border: 1px solid #ddd;">Site C</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">78.30</td><td style="padding: 4px; border: 1px solid #ddd; text-align: center;">20.15</td></tr>
-            </tbody>
-        </table>
+<h3>Example points.csv</h3>
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">points.csv</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.9; color:#f1f5f9;"><code>id,name,lon,lat
+1,Site A,78.10,20.40
+2,Site B,78.45,20.60
+3,Site C,78.30,20.15
+4,Site D,78.70,20.35</code></pre>
+</div>
+
+<h3>Add Delimited Text Layer</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:12px; font-weight:bold; text-align:center;">Format</div>
+        <div style="padding:15px; text-align:center;">
+            <p>CSV</p>
+        </div>
     </div>
-    <div style="width: 10%; text-align: center; font-size: 20px; color: #FF9800;">&rarr;</div>
-    <div style="width: 30%; border: 1px solid #ccc; padding: 8px; font-size: 11px; background: #f9f9f9;">
-        <strong style="font-size: 12px; color: #282A35;">Add Delimited Text Layer</strong><br>
-        Format: CSV<br>
-        X field: lon<br>
-        Y field: lat<br>
-        CRS: EPSG:4326
+    <div style="border:1px solid #198754; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#198754; color:white; padding:12px; font-weight:bold; text-align:center;">X field</div>
+        <div style="padding:15px; text-align:center;">
+            <p>lon</p>
+        </div>
     </div>
-    <div style="width: 10%; text-align: center; font-size: 20px; color: #FF9800;">&rarr;</div>
-    <div style="width: 25%; border: 2px solid #2196F3; border-radius: 6px; background: #eef; height: 80px; position: relative;">
-        <div style="position: absolute; top: 15px; left: 20px; width: 8px; height: 8px; background: #FF9800; border-radius: 50%;"></div>
-        <div style="position: absolute; top: 40px; left: 50px; width: 8px; height: 8px; background: #FF9800; border-radius: 50%;"></div>
-        <div style="position: absolute; top: 55px; left: 30px; width: 8px; height: 8px; background: #FF9800; border-radius: 50%;"></div>
-        <div style="position: absolute; bottom: 5px; left: 5px; font-size: 9px; color: #666;">each row = one point</div>
+    <div style="border:1px solid #b45309; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#b45309; color:white; padding:12px; font-weight:bold; text-align:center;">Y field</div>
+        <div style="padding:15px; text-align:center;">
+            <p>lat</p>
+        </div>
+    </div>
+    <div style="border:1px solid #6d28d9; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#6d28d9; color:white; padding:12px; font-weight:bold; text-align:center;">CRS</div>
+        <div style="padding:15px; text-align:center;">
+            <p>EPSG:4326 for GPS data.</p>
+        </div>
     </div>
 </div>
 
-<p>
-    The diagram shows the flow from a spreadsheet to a map. When you load a CSV, QGIS reads the X and Y columns, interprets them with the chosen CRS, and places a point for each row. You must ensure the table is clean and the coordinates are correctly formatted.
-</p>
-
-<h2>Key Points</h2>
+<h3>Prepare and load</h3>
 <ul>
-    <li>QGIS: <strong>Layer &gt; Add Layer &gt; Add Delimited Text Layer</strong>; choose the X (lon) and Y (lat) fields.</li>
-    <li>Set the CRS of the coordinates – usually <strong>EPSG:4326</strong> for GPS data.</li>
-    <li>Excel (.xlsx) can be loaded directly; for best results save as <strong>CSV UTF-8</strong>.</li>
+    <li>QGIS: Layer &gt; Add Layer &gt; Add Delimited Text Layer, then choose the X (lon) and Y (lat) fields.</li>
     <li>Prepare the table: one header row, no merged cells, numbers without units, decimal point not comma.</li>
-    <li>The result links to the CSV – use <strong>Save Features As</strong> to make a real spatial file.</li>
+    <li>Excel (.xlsx) can be loaded directly; for best results save as CSV UTF-8.</li>
+    <li>The result links to the CSV: use Save Features As to make a real spatial file.</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Points not showing? Check the decimal separator and the CRS first.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> Points not showing? Check the decimal separator and the CRS first.
+    </p>
 </div>

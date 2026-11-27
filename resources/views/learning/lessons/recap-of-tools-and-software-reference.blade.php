@@ -13,7 +13,7 @@
     <li>Recall the one-line job of each tool</li>
     <li>Work through a practice checklist that touches every group</li>
 </ul>
-
+    
 <h2>Visual Guide: The Five Groups at a Glance</h2>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 20px 0; text-align: center; font-size: 11px;">
     <div style="width: 19%; border: 2px solid #282A35; border-radius: 6px; overflow: hidden;">

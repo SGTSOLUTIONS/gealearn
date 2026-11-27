@@ -1,56 +1,57 @@
-{{-- resources/views/learning/lessons/3-11-measuring.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
-    QGIS measures lengths, areas, and angles directly on the map canvas.
-    These tools are essential for quick spatial analysis without creating new datasets.
+    QGIS measures lengths, areas and angles directly on the map canvas.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
     <li>Measure lines and areas</li>
-    <li>Set the correct units and ellipsoid</li>
-    <li>Store measurements in the attribute table</li>
+    <li>Set units and the ellipsoid</li>
+    <li>Store measurements in fields</li>
 </ul>
 
-<h2>Visual Guide: Measurement Tools</h2>
-<div style="display: flex; justify-content: space-between; margin: 20px 0; text-align: center;">
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="font-size: 12px; color: #282A35;">Measure Line</strong>
-        <div style="border: 1px solid #ddd; height: 80px; margin-top: 8px; position: relative; background: #f9f9f9;">
-            <div style="position: absolute; bottom: 10px; left: 10px; width: 10px; height: 10px; background: #FF9800; border-radius: 50%;"></div>
-            <div style="position: absolute; bottom: 10px; left: 10px; width: 80px; height: 2px; background: #FF9800; transform: rotate(-30deg); transform-origin: left center;"></div>
-            <div style="position: absolute; bottom: 35px; left: 80px; width: 10px; height: 10px; background: #FF9800; border-radius: 50%;"></div>
-            <div style="position: absolute; top: 20px; left: 100px; font-size: 10px; font-weight: bold;">120m</div>
+<h3>Measure tools</h3>
+<ul>
+    <li>Measure Line (Ctrl+Shift+M) – click vertices, right-click to finish; shows segments and the total.</li>
+    <li>Measure Area (Ctrl+Shift+J) – click the corners of the shape.</li>
+    <li>Measure Angle – gives the angle between two lines.</li>
+</ul>
+
+<p>
+    Set the units and the ellipsoid in <strong>Project &gt; Properties &gt; General &gt; Measurements</strong>.
+</p>
+
+<h3>Store measurements for every feature</h3>
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">Field Calculator expressions</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.9; color:#f1f5f9;"><code>$length   -- length of each line feature
+$area     -- area of each polygon feature</code></pre>
+</div>
+
+<h3>Pick a CRS that measures well</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:12px; font-weight:bold; text-align:center;">Geographic (EPSG:4326)</div>
+        <div style="padding:15px; text-align:center;">
+            <p>Units are degrees. Not suitable for distance or area.</p>
         </div>
-        <div style="font-size: 11px; color: #666; margin-top: 5px;">Ctrl+Shift+M</div>
     </div>
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="font-size: 12px; color: #282A35;">Measure Area</strong>
-        <div style="border: 1px solid #ddd; height: 80px; margin-top: 8px; position: relative; background: #f9f9f9;">
-            <div style="position: absolute; top: 15px; left: 30px; width: 60px; height: 50px; background: rgba(255, 152, 0, 0.2); border: 2px solid #FF9800; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">1,250 sqm</div>
-        </div>
-        <div style="font-size: 11px; color: #666; margin-top: 5px;">Ctrl+Shift+J</div>
-    </div>
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="font-size: 12px; color: #282A35;">Set Units</strong>
-        <div style="border: 1px solid #ddd; margin-top: 8px; background: #f9f9f9; padding: 5px; font-size: 10px; text-align: left;">
-            <strong>Project settings</strong><br>
-            Project > Properties > General > Measurements<br>
-            Ellipsoid, Distance units, Area units
+    <div style="border:1px solid #198754; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#198754; color:white; padding:12px; font-weight:bold; text-align:center;">Projected (for example UTM)</div>
+        <div style="padding:15px; text-align:center;">
+            <p>Units are metres. Accurate locally.</p>
         </div>
     </div>
 </div>
 
-<h2>Key Points</h2>
+<h3>Handy unit conversions</h3>
 <ul>
-    <li><strong>Measure Line (Ctrl+Shift+M):</strong> click vertices, right-click to finish; shows segments and total.</li>
-    <li><strong>Measure Area (Ctrl+Shift+J):</strong> click the corners of the shape.</li>
-    <li><strong>Measure Angle</strong> gives the angle between two lines.</li>
-    <li>Set units and ellipsoid in <strong>Project > Properties > General > Measurements</strong>.</li>
-    <li>To store values for every feature, use <code>$length</code> or <code>$area</code> in the <strong>Field Calculator</strong>.</li>
+    <li>1 km = 1,000 m</li>
+    <li>1 hectare (ha) = 10,000 square metres</li>
+    <li>1 square kilometre = 100 hectares</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Use an ellipsoidal setting, or a suitable projected CRS, for accurate ground distances.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> Use an ellipsoidal setting, or a suitable projected CRS, for accurate ground distances.
+    </p>
 </div>

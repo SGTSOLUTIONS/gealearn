@@ -13,7 +13,7 @@
 </p>
 
 <h2>How Does a Projected Coordinate System Work?</h2>
-<p>
+<p> 
     A map projection transforms geographic positions from the Earth's curved surface onto a flat map. This allows GIS software to represent locations using grid coordinates.
 </p>
 <p>

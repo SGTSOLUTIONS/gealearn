@@ -1,64 +1,68 @@
-{{-- resources/views/learning/lessons/4-1-data-formats.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
     A data format is the file type used to store spatial data. It decides what can be stored and which software can open it.
-    Choosing the right format is essential for sharing, storage, and analysis.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Understand the four main categories of spatial data</li>
-    <li>Identify common file extensions for each category</li>
-    <li>Learn which formats are best for different tasks</li>
+    <li>Recognise the four main families of spatial data</li>
+    <li>Know the common file extensions</li>
+    <li>Choose a format for a given purpose</li>
+    <li>Tell open formats from vendor-controlled ones</li>
 </ul>
 
-<h2>Visual Guide: Spatial Data Categories</h2>
-<div style="display: flex; justify-content: space-between; text-align: center; margin: 20px 0;">
-    <div style="width: 23%; border: 2px solid #282A35; border-radius: 6px; overflow: hidden;">
-        <div style="background: #282A35; color: #fff; padding: 10px; font-weight: bold; font-size: 14px;">Vector</div>
-        <div style="padding: 12px; font-size: 13px;">.shp &bull; .geojson<br>.gpkg &bull; .kml / .kmz<br><strong>points &bull; lines &bull; polygons</strong></div>
+<h3>Spatial data families</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:12px; font-weight:bold; text-align:center;">Vector</div>
+        <div style="padding:15px; text-align:center;">
+            <p><code>.shp, .geojson, .gpkg, .kml / .kmz</code><br>Points, lines and polygons.</p>
+        </div>
     </div>
-    <div style="width: 23%; border: 2px solid #04AA6D; border-radius: 6px; overflow: hidden;">
-        <div style="background: #04AA6D; color: #fff; padding: 10px; font-weight: bold; font-size: 14px;">Raster</div>
-        <div style="padding: 12px; font-size: 13px;">.tif (GeoTIFF)<br>DEM &bull; imagery<br><strong>grid of cells</strong></div>
+    <div style="border:1px solid #198754; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#198754; color:white; padding:12px; font-weight:bold; text-align:center;">Raster</div>
+        <div style="padding:15px; text-align:center;">
+            <p><code>.tif (GeoTIFF), DEM, imagery</code><br>A grid of cells.</p>
+        </div>
     </div>
-    <div style="width: 23%; border: 2px solid #FF9800; border-radius: 6px; overflow: hidden;">
-        <div style="background: #FF9800; color: #fff; padding: 10px; font-weight: bold; font-size: 14px;">Tabular</div>
-        <div style="padding: 12px; font-size: 13px;">.csv &bull; .xlsx<br>rows and columns<br><strong>x, y make points</strong></div>
+    <div style="border:1px solid #b45309; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#b45309; color:white; padding:12px; font-weight:bold; text-align:center;">Tabular</div>
+        <div style="padding:15px; text-align:center;">
+            <p><code>.csv, .xlsx</code><br>Rows and columns; x and y columns make points.</p>
+        </div>
     </div>
-    <div style="width: 23%; border: 2px solid #2196F3; border-radius: 6px; overflow: hidden;">
-        <div style="background: #2196F3; color: #fff; padding: 10px; font-weight: bold; font-size: 14px;">CAD</div>
-        <div style="padding: 12px; font-size: 13px;">.dxf &bull; .dwg<br>drawing layers<br><strong>needs a CRS</strong></div>
+    <div style="border:1px solid #6d28d9; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#6d28d9; color:white; padding:12px; font-weight:bold; text-align:center;">CAD</div>
+        <div style="padding:15px; text-align:center;">
+            <p><code>.dxf, .dwg</code><br>Drawing layers; needs a CRS.</p>
+        </div>
     </div>
-</div>
-<div style="text-align: center; background: #E7E9EB; padding: 10px; border-radius: 4px; margin-bottom: 20px; font-size: 13px;">
-    <strong>Open:</strong> GeoPackage &bull; GeoJSON &bull; GeoTIFF &nbsp;|&nbsp; <strong>Vendor-controlled:</strong> Shapefile &bull; DWG
 </div>
 
-<h2>Key Points</h2>
+<h3>Choosing a format</h3>
+<div style="border-radius:8px; overflow:hidden; margin:15px 0;">
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <tr style="background:#eef3f8;">
+            <th style="padding:10px; text-align:left;">Format</th>
+            <th style="padding:10px; text-align:left;">Type</th>
+            <th style="padding:10px; text-align:left;">Best for</th>
+        </tr>
+        <tr><td style="padding:10px;">Shapefile</td><td style="padding:10px;">Vector</td><td style="padding:10px;">Exchange with older software</td></tr>
+        <tr><td style="padding:10px;">GeoJSON</td><td style="padding:10px;">Vector</td><td style="padding:10px;">Web maps</td></tr>
+        <tr><td style="padding:10px;">KML / KMZ</td><td style="padding:10px;">Vector</td><td style="padding:10px;">Viewing in Google Earth</td></tr>
+        <tr><td style="padding:10px;">GeoPackage</td><td style="padding:10px;">Vector + raster</td><td style="padding:10px;">Everyday storage and analysis</td></tr>
+        <tr><td style="padding:10px;">GeoTIFF</td><td style="padding:10px;">Raster</td><td style="padding:10px;">Imagery and elevation</td></tr>
+    </table>
+</div>
+
+<h3>Open and vendor-controlled formats</h3>
 <ul>
-    <li><strong>Vector</strong> stores points, lines and polygons together with attributes.</li>
-    <li><strong>Raster</strong> stores a grid of cells, each with a value (imagery, elevation).</li>
-    <li><strong>Tabular</strong> files (CSV, Excel) hold attributes and can carry x, y columns.</li>
-    <li><strong>CAD</strong> files (DXF, DWG) hold drawings, not complete GIS data.</li>
+    <li><strong>Open</strong> – GeoPackage, GeoJSON and GeoTIFF are documented standards that any software can read.</li>
+    <li><strong>Vendor-controlled</strong> – Shapefile and DWG come with more limits and fewer guarantees.</li>
     <li>Prefer open formats for sharing and long-term storage.</li>
 </ul>
 
-<h2>Format Comparison</h2>
-<table>
-    <thead>
-        <tr><th>Format</th><th>Type</th><th>Best For</th></tr>
-    </thead>
-    <tbody>
-        <tr><td>Shapefile</td><td>Vector</td><td>Exchange with older software</td></tr>
-        <tr><td>GeoJSON</td><td>Vector</td><td>Web maps</td></tr>
-        <tr><td>KML / KMZ</td><td>Vector</td><td>Viewing in Google Earth</td></tr>
-        <tr><td>GeoPackage</td><td>Vector + raster</td><td>Everyday storage and analysis</td></tr>
-        <tr><td>GeoTIFF</td><td>Raster</td><td>Imagery and elevation</td></tr>
-    </tbody>
-</table>
-
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Pick by purpose — analysis: GeoPackage &bull; web maps: GeoJSON &bull; imagery: GeoTIFF.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> Pick by purpose – analysis: GeoPackage; web maps: GeoJSON; imagery: GeoTIFF.
+    </p>
 </div>

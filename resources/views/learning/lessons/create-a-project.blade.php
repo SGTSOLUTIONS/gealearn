@@ -1,63 +1,62 @@
-{{-- resources/views/learning/lessons/3-5-new-project.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
-    A project file (.qgz) remembers which layers you use, their styles, the CRS, and your layouts.
-    It is the container that holds your entire mapping workspace together.
+    A project file (.qgz) remembers which layers you use, their styles, the CRS
+    and your layouts. Setting a project up properly saves time later. A project
+    stores links to data rather than the data itself, so keeping files organised
+    prevents broken layers.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Learn how to create and save a new project</li>
-    <li>Understand how the project file links to data</li>
-    <li>Set the correct Coordinate Reference System (CRS)</li>
+    <li>Create and save a project</li>
+    <li>Set the project CRS</li>
+    <li>Understand that projects store links, not data</li>
 </ul>
 
-<h2>Visual Guide: Project Workflow</h2>
-<div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
-    <div style="width: 22%; border: 2px solid #282A35; border-radius: 6px; text-align: center;">
-        <div style="background: #282A35; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">1. New Project</div>
-        <div style="padding: 12px; font-size: 12px;">Ctrl+N</div>
+<h3>Four steps</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; padding:12px; background:#f5f8fc; text-align:center;">
+        <div style="color:#245b83; font-weight:bold; margin-bottom:5px;">1. New project</div>
+        <div style="font-size:14px;">Project &gt; New, or <code>Ctrl+N</code>.</div>
     </div>
-    <div style="font-size: 20px; color: #FF9800;">&rarr;</div>
-    <div style="width: 22%; border: 2px solid #04AA6D; border-radius: 6px; text-align: center;">
-        <div style="background: #04AA6D; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">2. Set CRS</div>
-        <div style="padding: 12px; font-size: 12px;">Bottom-right corner (e.g., EPSG:4326 or UTM)</div>
+    <div style="border:1px solid #245b83; border-radius:8px; padding:12px; background:#f5f8fc; text-align:center;">
+        <div style="color:#245b83; font-weight:bold; margin-bottom:5px;">2. Set CRS</div>
+        <div style="font-size:14px;">Click the CRS button in the bottom-right corner of the window.</div>
     </div>
-    <div style="font-size: 20px; color: #FF9800;">&rarr;</div>
-    <div style="width: 22%; border: 2px solid #2196F3; border-radius: 6px; text-align: center;">
-        <div style="background: #2196F3; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">3. Add Data</div>
-        <div style="padding: 12px; font-size: 12px;">Layer > Add Layer</div>
+    <div style="border:1px solid #245b83; border-radius:8px; padding:12px; background:#f5f8fc; text-align:center;">
+        <div style="color:#245b83; font-weight:bold; margin-bottom:5px;">3. Add data</div>
+        <div style="font-size:14px;">Layer &gt; Add Layer, or drag files from the Browser panel.</div>
     </div>
-    <div style="font-size: 20px; color: #FF9800;">&rarr;</div>
-    <div style="width: 22%; border: 2px solid #FF9800; border-radius: 6px; text-align: center;">
-        <div style="background: #FF9800; color: #fff; padding: 8px; font-size: 13px; font-weight: bold;">4. Save</div>
-        <div style="padding: 12px; font-size: 12px;">.qgz file</div>
+    <div style="border:1px solid #245b83; border-radius:8px; padding:12px; background:#f5f8fc; text-align:center;">
+        <div style="color:#245b83; font-weight:bold; margin-bottom:5px;">4. Save</div>
+        <div style="font-size:14px;"><code>Ctrl+S</code> creates the .qgz file.</div>
     </div>
 </div>
 
-<div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-    <div style="border: 2px dashed #ccc; padding: 15px; border-radius: 6px; text-align: center; background: #f9f9f9; width: 80%;">
-        <strong style="font-size: 16px;">.qgz Project File</strong><br>
-        <span style="font-size: 12px; color: #666;">Layer links &bull; Styles &bull; CRS &bull; Layouts</span>
-        <div style="margin-top: 15px; display: flex; justify-content: space-around;">
-            <div style="border: 1px solid #ccc; padding: 5px 10px; background: #fff; border-radius: 4px; font-size: 12px;">roads.shp</div>
-            <div style="border: 1px solid #ccc; padding: 5px 10px; background: #fff; border-radius: 4px; font-size: 12px;">dem.tif</div>
-            <div style="border: 1px solid #ccc; padding: 5px 10px; background: #fff; border-radius: 4px; font-size: 12px;">wards.gpkg</div>
-        </div>
-        <div style="font-size: 11px; margin-top: 10px; color: #d9534f;">(Links to data files — not copies)</div>
-    </div>
+<h3>Suggested project folder</h3>
+<div style="background:#1e293b; color:#fff; border-radius:8px; overflow:hidden; margin:15px 0;">
+    <div style="background:#29384d; padding:10px 15px; font-size:13px;">Project folder</div>
+    <pre style="padding:16px; margin:0; white-space:pre-wrap; font-size:13px; line-height:1.9; color:#f1f5f9;"><code>my_project/
+  data/       roads.shp  dem.tif  wards.gpkg
+  outputs/    exported maps and results
+  my_map.qgz  the project file</code></pre>
 </div>
 
-<h2>Key Points</h2>
+<h3>Common CRS choices</h3>
 <ul>
-    <li>Start with <strong>Project > New (Ctrl+N)</strong> and save early with <strong>Ctrl+S</strong>.</li>
-    <li>Set the CRS from the bottom-right corner: <strong>EPSG:4326</strong> for GPS lat/long, a projected CRS (e.g. UTM) for measuring.</li>
-    <li>The project stores <strong>links to data, not copies</strong> – moving files breaks the links.</li>
-    <li>Keep one folder per project, for example <code>data/</code>, <code>outputs/</code> and the <code>.qgz</code> file.</li>
-    <li><code>.qgz</code> is the compressed project format; <code>.qgs</code> is plain XML.</li>
+    <li><strong>EPSG:4326 (WGS 84)</strong> – GPS coordinates, latitude and longitude in degrees.</li>
+    <li><strong>EPSG:3857 (Web Mercator)</strong> – web maps such as OpenStreetMap tiles.</li>
+    <li><strong>A UTM zone</strong> (for example EPSG:32644) – accurate distances and areas in metres.</li>
+</ul>
+
+<ul>
+    <li>The project stores links to data, not copies: moving files breaks the links.</li>
+    <li>Check <strong>Project &gt; Properties &gt; General &gt; Save paths</strong> to use relative paths.</li>
+    <li>The .qgz format is compressed; .qgs is plain XML.</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> The first layer you add usually sets the project CRS automatically – always check it.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> The first layer you add usually sets the project
+        CRS automatically; always check it before you start measuring or analysing.
+    </p>
 </div>

@@ -1,57 +1,65 @@
-{{-- resources/views/learning/lessons/3-13-symbology.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
-    Symbology controls how features look. Good styling makes patterns easy to read and highlights the most important information.
+    Symbology controls how features look. Good styling makes patterns easy to read.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Apply single, categorized, and graduated symbols</li>
-    <li>Create rule-based styles</li>
-    <li>Save and reuse style files</li>
+    <li>Choose the right renderer</li>
+    <li>Style by category and by number</li>
+    <li>Reuse styles</li>
 </ul>
 
-<h2>Visual Guide: Types of Symbology</h2>
-<div style="display: flex; justify-content: space-between; margin: 20px 0; text-align: center;">
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="font-size: 12px; color: #282A35;">Single Symbol</strong>
-        <div style="border: 1px solid #ddd; height: 60px; margin-top: 8px; background: #a8e6cf; border-radius: 4px;"></div>
-        <div style="font-size: 11px; color: #666; margin-top: 5px;">All features alike</div>
-        <div style="font-size: 10px; color: #d9534f; margin-top: 2px;">One style for every feature</div>
-    </div>
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="font-size: 12px; color: #282A35;">Categorized</strong>
-        <div style="border: 1px solid #ddd; height: 60px; margin-top: 8px; display: flex;">
-            <div style="flex: 1; background: #ff9800;"></div>
-            <div style="flex: 1; background: #e91e63;"></div>
-            <div style="flex: 1; background: #4caf50;"></div>
+<h3>Main renderers</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:12px; font-weight:bold; text-align:center;">Single Symbol</div>
+        <div style="padding:15px; text-align:center;">
+            <p>Every feature looks the same.</p>
         </div>
-        <div style="font-size: 11px; color: #666; margin-top: 5px;">By text value (land use)</div>
-        <div style="font-size: 10px; color: #d9534f; margin-top: 2px;">Residential | Commercial | Park</div>
     </div>
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="font-size: 12px; color: #282A35;">Graduated</strong>
-        <div style="border: 1px solid #ddd; height: 60px; margin-top: 8px; display: flex; flex-direction: column;">
-            <div style="flex: 1; background: #bbdefb;"></div>
-            <div style="flex: 1; background: #2196f3;"></div>
-            <div style="flex: 1; background: #0d47a1;"></div>
+    <div style="border:1px solid #198754; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#198754; color:white; padding:12px; font-weight:bold; text-align:center;">Categorized</div>
+        <div style="padding:15px; text-align:center;">
+            <p>One style per text value, e.g. land use or type.</p>
         </div>
-        <div style="font-size: 11px; color: #666; margin-top: 5px;">By number range (population)</div>
-        <div style="font-size: 10px; color: #d9534f; margin-top: 2px;">Low &rarr; High</div>
+    </div>
+    <div style="border:1px solid #b45309; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#b45309; color:white; padding:12px; font-weight:bold; text-align:center;">Graduated</div>
+        <div style="padding:15px; text-align:center;">
+            <p>A colour ramp for number ranges, e.g. population or area.</p>
+        </div>
+    </div>
+    <div style="border:1px solid #6d28d9; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#6d28d9; color:white; padding:12px; font-weight:bold; text-align:center;">Rule-based</div>
+        <div style="padding:15px; text-align:center;">
+            <p>Styles driven by conditions you write.</p>
+        </div>
     </div>
 </div>
 
-<h2>Key Points</h2>
 <ul>
-    <li>Open <strong>Layer Properties > Symbology</strong> or the <strong>Layer Styling panel (F7)</strong>.</li>
-    <li><strong>Single Symbol</strong> – every feature looks the same.</li>
-    <li><strong>Categorized</strong> – one style per text value (land use, type).</li>
-    <li><strong>Graduated</strong> – colour ramp for number ranges (population, area).</li>
-    <li><strong>Rule-based</strong> – styles driven by conditions you write.</li>
-    <li>Save a look as a <strong>.qml style file</strong> to reuse it on other layers.</li>
+    <li>Open Layer Properties, Symbology, or the Layer Styling panel (F7).</li>
+    <li>Save a look as a .qml style file to reuse it on other layers.</li>
+</ul>
+
+<h3>Classification modes for Graduated</h3>
+<ul>
+    <li><strong>Equal Interval</strong> – same-size ranges; good for evenly spread data.</li>
+    <li><strong>Quantile</strong> – the same number of features per class; good for comparing ranks.</li>
+    <li><strong>Natural Breaks (Jenks)</strong> – groups similar values; good for most real-world data.</li>
+    <li><strong>Standard Deviation</strong> – distance from the mean; good for spotting outliers.</li>
+</ul>
+
+<h3>Styling tips</h3>
+<ul>
+    <li>Use light-to-dark colour ramps for low-to-high values.</li>
+    <li>Keep categories to a manageable number so colours stay distinct.</li>
+    <li>Choose colour-blind-friendly palettes.</li>
+    <li>Check that the legend still makes sense after styling.</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Rule of thumb: text categories use Categorized; numbers use Graduated.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> Rule of thumb: text categories use Categorized; numbers use Graduated.
+    </p>
 </div>

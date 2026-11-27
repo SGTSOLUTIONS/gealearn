@@ -1,68 +1,61 @@
-{{-- resources/views/learning/lessons/5-4-buffer.blade.php --}}
-{{-- CONTENT ONLY --}}
-
 <p>
     A buffer creates a zone of a set distance around points, lines or polygons.
-    It is one of the most common tools for proximity analysis.
 </p>
 
-<h2>Learning goals</h2>
+<h3>Learning goals</h3>
 <ul>
-    <li>Create a buffer around different geometry types</li>
-    <li>Understand buffer distance units</li>
-    <li>Use the Segment and Dissolve options</li>
+    <li>Create buffers around points, lines and polygons</li>
+    <li>Set the distance in the right units</li>
+    <li>Use a variable distance</li>
+    <li>Name typical uses of buffers</li>
 </ul>
 
-<h2>Visual Guide: Buffer Types</h2>
-<div style="display: flex; justify-content: space-between; margin: 20px 0; text-align: center;">
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="font-size: 12px; color: #282A35;">Point buffer</strong>
-        <div style="height: 70px; position: relative; margin-top: 8px; background: #f9f9f9;">
-            <div style="width: 50px; height: 50px; border: 2px dashed #2196F3; background: rgba(33, 150, 243, 0.1); border-radius: 50%; position: absolute; top: 10px; left: 30px;"></div>
-            <div style="width: 8px; height: 8px; background: #282A35; border-radius: 50%; position: absolute; top: 31px; left: 51px;"></div>
-            <div style="position: absolute; top: 35px; left: 65px; font-size: 10px; color: #d9534f; font-weight: bold;">500 m</div>
+<h3>Buffer types</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:20px 0;">
+    <div style="border:1px solid #245b83; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#245b83; color:white; padding:12px; font-weight:bold; text-align:center;">Point buffer</div>
+        <div style="padding:15px; text-align:center;">
+            <p>A circle around each point.</p>
         </div>
     </div>
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="font-size: 12px; color: #282A35;">Line buffer</strong>
-        <div style="height: 70px; position: relative; margin-top: 8px; background: #f9f9f9;">
-            <div style="position: absolute; top: 15px; left: 20px; width: 80px; height: 8px; background: rgba(33, 150, 243, 0.3); border-radius: 4px;"></div>
-            <div style="position: absolute; top: 25px; left: 20px; width: 20px; height: 30px; background: rgba(33, 150, 243, 0.3); border-radius: 4px; transform: rotate(45deg);"></div>
+    <div style="border:1px solid #198754; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#198754; color:white; padding:12px; font-weight:bold; text-align:center;">Line buffer</div>
+        <div style="padding:15px; text-align:center;">
+            <p>A zone on both sides of the line.</p>
         </div>
-        <div style="font-size: 10px; color: #666; margin-top: 5px;">buffer distance on both sides</div>
     </div>
-    <div style="width: 30%; border: 1px solid #ccc; border-radius: 6px; padding: 10px; background: #fff;">
-        <strong style="font-size: 12px; color: #282A35;">Polygon buffer</strong>
-        <div style="height: 70px; position: relative; margin-top: 8px; background: #f9f9f9;">
-            <div style="position: absolute; top: 15px; left: 30px; width: 50px; height: 40px; border: 2px solid #282A35; background: #e8f5e9; border-radius: 4px;"></div>
-            <div style="position: absolute; top: 10px; left: 25px; width: 60px; height: 50px; border: 2px dashed #2196F3; border-radius: 4px;"></div>
+    <div style="border:1px solid #b45309; border-radius:8px; overflow:hidden; background:#f5f8fc;">
+        <div style="background:#b45309; color:white; padding:12px; font-weight:bold; text-align:center;">Polygon buffer</div>
+        <div style="padding:15px; text-align:center;">
+            <p>A zone around the outline.</p>
         </div>
     </div>
 </div>
 
-<div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 12px;">
-    <div style="width: 48%; border: 2px solid #282A35; border-radius: 6px; padding: 8px; text-align: center; background: #fff;">
-        <strong>Tool:</strong> Vector &gt; Geoprocessing Tools &gt; Buffer
-    </div>
-    <div style="width: 48%; border: 2px solid #FF9800; border-radius: 6px; padding: 8px; text-align: center; background: #fff3cd;">
-        <strong>Distance is in CRS units:</strong> use a metre-based CRS
-    </div>
+<h3>Buffer settings</h3>
+<div style="border-radius:8px; overflow:hidden; margin:15px 0;">
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+        <tr style="background:#eef3f8;">
+            <th style="padding:10px; text-align:left;">Setting</th>
+            <th style="padding:10px; text-align:left;">Meaning</th>
+        </tr>
+        <tr><td style="padding:10px;">Distance</td><td style="padding:10px;">In CRS units: use a metre-based CRS, not degrees</td></tr>
+        <tr><td style="padding:10px;">Variable distance</td><td style="padding:10px;">Use a field or expression, e.g. road width by road type</td></tr>
+        <tr><td style="padding:10px;">Segments</td><td style="padding:10px;">How smooth the rounded corners are</td></tr>
+        <tr><td style="padding:10px;">Dissolve result</td><td style="padding:10px;">Merges overlapping buffers</td></tr>
+        <tr><td style="padding:10px;">Tool</td><td style="padding:10px;">Vector &gt; Geoprocessing Tools &gt; Buffer</td></tr>
+    </table>
 </div>
 
-<p>
-    The diagram shows how a buffer creates a zone around a point, a line, or a polygon. The distance is always measured in the units of the Coordinate Reference System (CRS), so you must use a projected CRS (metres) for accurate results.
-</p>
-
-<h2>Key Points (Q&A)</h2>
+<h3>Typical uses</h3>
 <ul>
-    <li><strong>What is a buffer?</strong> A zone of a set distance around points, lines or polygons.</li>
-    <li><strong>Which tool creates it?</strong> Vector &gt; Geoprocessing Tools &gt; Buffer.</li>
-    <li><strong>In which units is the distance?</strong> CRS units, so use a projected CRS (metres), not degrees.</li>
-    <li><strong>What do Segments and Dissolve result do?</strong> Segments set how smooth rounded corners are; Dissolve result merges overlapping buffers.</li>
-    <li><strong>Can the distance vary?</strong> Yes, use a field or expression, e.g. road width by road type.</li>
-    <li><strong>What are typical uses?</strong> Sites within 500 m of a river, noise zones, safety distances.</li>
+    <li>Sites within 500 m of a river.</li>
+    <li>Noise zones around roads and airports.</li>
+    <li>Safety distances around hazards.</li>
 </ul>
 
 <div class="tip">
-    <p style="margin:0"><strong>Tip:</strong> Buffering in lat/long gives distorted shapes — reproject to a metre-based CRS first.</p>
+    <p style="margin:0">
+        <strong>Practical tip:</strong> Buffering in lat/long gives distorted shapes – reproject to a metre-based CRS first.
+    </p>
 </div>

@@ -15,7 +15,7 @@
 <ul>
     <li>Understand what the letters in GIS stand for</li>
     <li>Learn how location and information are connected</li>
-    <li>Recognise the components that make up a GIS system</li>
+    <li>Recognise the components that make up a GIS system</li>   
 </ul>
 
 <div class="note">

@@ -8,7 +8,7 @@
 
 <h2>Learning goals</h2>
 <ul>
-    <li>Understand the strengths of 2D</li>
+    <li>Understand the strengths of 2D</    li>
     <li>Recognise what 3D adds</li>
     <li>Know the costs of 3D</li>
 </ul>
